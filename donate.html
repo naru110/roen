@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>후원 | 로엔 야생</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg: #0b0d10;
+            --card: #11151a;
+            --card-hover: #171c22;
+            --border: #222830;
+            --text: #f1f3f5;
+            --muted: #8c96a3;
+            --accent: #8b7cff;
+            --gold: #f3c85b;
+            --green: #62d78a;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            min-height: 100vh;
+            background: var(--bg);
+            color: var(--text);
+            font-family:
+                -apple-system,
+                BlinkMacSystemFont,
+                "Segoe UI",
+                Roboto,
+                "Noto Sans KR",
+                sans-serif;
+        }
+
+        a {
+            color: inherit;
+        }
+
+        .page {
+            width: min(1100px, calc(100% - 40px));
+            margin: auto;
+            padding: 34px 0 70px;
+        }
+
+        /* =========================
+           TOPBAR
+        ========================= */
+
+        .topbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 72px;
+        }
+
+        .brand {
+            color: var(--text);
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 700;
+            letter-spacing: -0.3px;
+        }
+
+        .back {
+            color: var(--muted);
+            text-decoration: none;
+            font-size: 13px;
+            transition: color .2s ease;
+        }
+
+        .back:hover {
+            color: var(--text);
+        }
+
+        /* =========================
+           HERO
+        ========================= */
+
+        .hero {
+            max-width: 760px;
+            margin-bottom: 42px;
+        }
+
+        .eyebrow {
+            display: inline-block;
+            margin-bottom: 14px;
+            color: var(--accent);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1.4px;
+        }
+
+        .hero h1 {
+            font-size: 42px;
+            line-height: 1.15;
+            letter-spacing: -1.8px;
+            font-weight: 700;
+        }
+
+        .hero p {
+            margin-top: 13px;
+            color: var(--muted);
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        /* =========================
+           EMBED
+        ========================= */
+
+        .embed {
+            position: relative;
+            padding: 20px 22px;
+            margin-bottom: 12px;
+            background: rgba(139,124,255,.045);
+            border: 1px solid rgba(139,124,255,.14);
+            border-left: 2px solid var(--accent);
+            border-radius: 12px;
+            color: #c2c8d0;
+            font-size: 13px;
+            line-height: 1.7;
+        }
+
+        .embed strong {
+            color: var(--text);
+        }
+
+        .embed.gold {
+            background: rgba(243,200,91,.045);
+            border-color: rgba(243,200,91,.14);
+            border-left-color: var(--gold);
+        }
+
+        .embed.green {
+            background: rgba(98,215,138,.04);
+            border-color: rgba(98,215,138,.13);
+            border-left-color: var(--green);
+        }
+
+        .embed-title {
+            display: block;
+            margin-bottom: 4px;
+            color: var(--text);
+            font-weight: 650;
+        }
+
+        /* =========================
+           SECTION
+        ========================= */
+
+        .section {
+            margin-top: 52px;
+        }
+
+        .section-head {
+            display: flex;
+            align-items: end;
+            justify-content: space-between;
+            gap: 20px;
+            margin-bottom: 14px;
+        }
+
+        .section-title {
+            font-size: 21px;
+            font-weight: 650;
+            letter-spacing: -.5px;
+        }
+
+        .section-label {
+            color: var(--muted);
+            font-size: 12px;
+        }
+
+        /* =========================
+           PAYMENT CARDS
+        ========================= */
+
+        .payment-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+        }
+
+        .payment-card {
+            min-height: 135px;
+            padding: 22px;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            transition: background .2s ease, border-color .2s ease, transform .2s ease;
+        }
+
+        .payment-card:hover {
+            background: var(--card-hover);
+            border-color: #343c46;
+            transform: translateY(-2px);
+        }
+
+        .payment-icon {
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 17px;
+            border-radius: 10px;
+            background: #171c22;
+            border: 1px solid #2a3139;
+            color: var(--gold);
+            font-size: 16px;
+            font-weight: 700;
+        }
+
+        .payment-card h3 {
+            font-size: 15px;
+            font-weight: 650;
+        }
+
+        .payment-card p {
+            margin-top: 7px;
+            color: var(--muted);
+            font-size: 12px;
+            line-height: 1.5;
+        }
+
+        /* =========================
+           ACCOUNT
+        ========================= */
+
+        .account {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            padding: 20px 22px;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+        }
+
+        .account-label {
+            color: var(--muted);
+            font-size: 11px;
+            margin-bottom: 6px;
+            letter-spacing: .4px;
+        }
+
+        .account-number {
+            font-size: 16px;
+            font-weight: 650;
+            letter-spacing: .2px;
+        }
+
+        .account-bank {
+            color: var(--muted);
+            font-size: 12px;
+            margin-top: 5px;
+        }
+
+        .account-badge {
+            flex: 0 0 auto;
+            padding: 7px 10px;
+            color: #d6dbe1;
+            background: #171c22;
+            border: 1px solid #2a3139;
+            border-radius: 8px;
+            font-size: 11px;
+        }
+
+        /* =========================
+           CASH
+        ========================= */
+
+        .cash-grid {
+            display: grid;
+            grid-template-columns: 1.25fr .75fr;
+            gap: 12px;
+        }
+
+        .cash-card {
+            padding: 24px;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+        }
+
+        .cash-card .small {
+            color: var(--muted);
+            font-size: 11px;
+            letter-spacing: .5px;
+        }
+
+        .cash-value {
+            margin-top: 9px;
+            font-size: 25px;
+            font-weight: 700;
+            letter-spacing: -.7px;
+        }
+
+        .cash-value span {
+            color: var(--gold);
+        }
+
+        .cash-detail {
+            margin-top: 9px;
+            color: var(--muted);
+            font-size: 12px;
+            line-height: 1.6;
+        }
+
+        /* =========================
+           RANK PRICE
+        ========================= */
+
+        .rank-price-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+
+        .rank-price {
+            padding: 19px;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 13px;
+        }
+
+        .rank-name {
+            color: var(--muted);
+            font-size: 11px;
+            font-weight: 650;
+            letter-spacing: .8px;
+        }
+
+        .rank-price strong {
+            display: block;
+            margin-top: 8px;
+            font-size: 20px;
+            letter-spacing: -.5px;
+        }
+
+        /* =========================
+           TABLE
+        ========================= */
+
+        .table-wrap {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            overflow: hidden;
+        }
+
+        .rank-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: center;
+        }
+
+        .rank-table th,
+        .rank-table td {
+            padding: 13px 11px;
+            border-bottom: 1px solid var(--border);
+            font-size: 12px;
+            white-space: nowrap;
+        }
+
+        .rank-table tr:last-child th,
+        .rank-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .rank-table thead th {
+            padding: 15px 10px;
+            color: var(--muted);
+            background: rgba(255,255,255,.018);
+            font-size: 11px;
+            font-weight: 650;
+        }
+
+        .rank-table thead th:first-child {
+            text-align: left;
+        }
+
+        .rank-table tbody th {
+            width: 25%;
+            color: var(--text);
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .rank-table td {
+            color: #c5ccd4;
+        }
+
+        .yes {
+            color: var(--green) !important;
+            font-weight: 700;
+        }
+
+        .no {
+            color: #5e6670 !important;
+        }
+
+        .rank-table .highlight {
+            color: var(--gold);
+            font-weight: 650;
+        }
+
+        .table-scroll {
+            overflow-x: auto;
+        }
+
+        /* =========================
+           NOTICE
+        ========================= */
+
+        .notice-list {
+            display: grid;
+            gap: 8px;
+        }
+
+        .notice-item {
+            padding: 14px 16px;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 11px;
+            color: var(--muted);
+            font-size: 12px;
+            line-height: 1.65;
+        }
+
+        .notice-item strong {
+            color: #dce1e6;
+        }
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            margin-top: 65px;
+            padding-top: 25px;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: #626b76;
+            font-size: 12px;
+        }
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 760px) {
+            .page {
+                width: min(100% - 28px, 1100px);
+                padding: 28px 0 50px;
+            }
+
+            .topbar {
+                margin-bottom: 48px;
+            }
+
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            .payment-grid,
+            .rank-price-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .cash-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .account {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 560px) {
+            .payment-grid,
+            .rank-price-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-head {
+                align-items: flex-start;
+                flex-direction: column;
+                gap: 4px;
+            }
+
+            .table-wrap {
+                overflow: visible;
+                border: none;
+                background: transparent;
+            }
+
+            .table-scroll {
+                overflow-x: auto;
+                background: var(--card);
+                border: 1px solid var(--border);
+                border-radius: 14px;
+            }
+
+            .rank-table {
+                min-width: 760px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="page">
+
+    <header class="topbar">
+        <a href="index.html" class="brand">로엔 야생</a>
+        <a href="index.html" class="back">← 메인으로</a>
+    </header>
+
+    <main>
+
+        <section class="hero">
+            <span class="eyebrow">SUPPORT · ROEN</span>
+            <h1>후원</h1>
+            <p>
+                로엔 야생의 운영과 발전을 후원하고<br>
+                캐시 및 랭크 혜택을 확인할 수 있습니다.
+            </p>
+        </section>
+
+        <div class="embed gold">
+            <span class="embed-title">후원 안내</span>
+            로엔의 공식적인 후원 창구는 <strong>계좌이체, 문화상품권, 컬처랜드 상품권</strong>입니다.
+            비공식 거래나 개인 간 거래는 지원하지 않습니다.
+        </div>
+
+        <section class="section" id="payment">
+            <div class="section-head">
+                <h2 class="section-title">후원 수단</h2>
+                <span class="section-label">OFFICIAL PAYMENT</span>
+            </div>
+
+            <div class="payment-grid">
+
+                <div class="payment-card">
+                    <div class="payment-icon">₩</div>
+                    <h3>계좌이체</h3>
+                    <p>지정된 공식 입금계좌를 통해 후원할 수 있습니다.</p>
+                </div>
+
+                <div class="payment-card">
+                    <div class="payment-icon">C</div>
+                    <h3>문화상품권</h3>
+                    <p>문화상품권을 이용한 후원이 가능합니다.</p>
+                </div>
+
+                <div class="payment-card">
+                    <div class="payment-icon">CL</div>
+                    <h3>컬처랜드 상품권</h3>
+                    <p>컬처랜드 상품권을 이용한 후원이 가능합니다.</p>
+                </div>
+
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="section-head">
+                <h2 class="section-title">입금계좌</h2>
+                <span class="section-label">BANK TRANSFER</span>
+            </div>
+
+            <div class="account">
+                <div>
+                    <div class="account-label">입금계좌</div>
+                    <div class="account-number">xxxx-xxxx-xxxx</div>
+                    <div class="account-bank">토스뱅크 · (주x우)</div>
+                </div>
+                <div class="account-badge">공식 후원 계좌</div>
+            </div>
+        </section>
+
+        <section class="section" id="cash">
+            <div class="section-head">
+                <h2 class="section-title">캐시 구매</h2>
+                <span class="section-label">ROEN CASH</span>
+            </div>
+
+            <div class="cash-grid">
+                <div class="cash-card">
+                    <div class="small">계좌이체 · 컬처랜드 상품권</div>
+                    <div class="cash-value">100원 <span>=</span> 10 캐시</div>
+                    <div class="cash-detail">
+                        계좌이체 및 컬처랜드 상품권은 기본 환율로 캐시가 지급됩니다.
+                    </div>
+                </div>
+
+                <div class="cash-card">
+                    <div class="small">문화상품권</div>
+                    <div class="cash-value">10% 차감</div>
+                    <div class="cash-detail">
+                        문화상품권은 환전 과정에서 10%가 차감된 수치가 지급됩니다.
+                    </div>
+                </div>
+            </div>
+
+            <div class="embed" style="margin-top:12px;">
+                <span class="embed-title">예시</span>
+                10,000원 상당의 계좌이체 또는 컬처랜드 상품권 → <strong>1,000 캐시</strong><br>
+                10,000원 상당의 문화상품권 → <strong>900 캐시</strong>
+            </div>
+        </section>
+
+        <section class="section" id="ranks">
+            <div class="section-head">
+                <h2 class="section-title">랭크</h2>
+                <span class="section-label">IRON · GOLD · DIAMOND · EMERALD</span>
+            </div>
+
+            <div class="embed">
+                <span class="embed-title">랭크 혜택 안내</span>
+                상위 랭크는 하위 랭크의 혜택을 포함하며, 각 등급에 따라 추가적인 편의 기능과 꾸미기 혜택이 제공됩니다.
+            </div>
+
+            <div class="rank-price-grid">
+
+                <div class="rank-price">
+                    <div class="rank-name">IRON</div>
+                    <strong>4,900원</strong>
+                </div>
+
+                <div class="rank-price">
+                    <div class="rank-name">GOLD</div>
+                    <strong>9,900원</strong>
+                </div>
+
+                <div class="rank-price">
+                    <div class="rank-name">DIAMOND</div>
+                    <strong>19,900원</strong>
+                </div>
+
+                <div class="rank-price">
+                    <div class="rank-name">EMERALD</div>
+                    <strong>34,900원</strong>
+                </div>
+
+            </div>
+        </section>
+
+        <section class="section" id="rank-benefits">
+            <div class="section-head">
+                <h2 class="section-title">랭크 혜택</h2>
+                <span class="section-label">BENEFITS</span>
+            </div>
+
+            <div class="table-wrap">
+                <div class="table-scroll">
+                    <table class="rank-table">
+                        <thead>
+                            <tr>
+                                <th>혜택</th>
+                                <th>Iron</th>
+                                <th>Gold</th>
+                                <th>Diamond</th>
+                                <th>Emerald</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr><th>전용 Prefix</th><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+                            <tr><th>채팅 색상</th><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+                            <tr><th>/hat</th><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+                            <tr><th>/craft</th><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+                            <tr><th>/enderchest</th><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+                            <tr><th>/anvil</th><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+                            <tr><th>/grindstone</th><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+                            <tr><th>/stonecutter</th><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+                            <tr><th>/nick</th><td class="no">—</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+                            <tr><th>/back</th><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+                            <tr><th>/sethome</th><td class="highlight">3</td><td class="highlight">5</td><td class="highlight">8</td><td class="highlight">12</td></tr>
+                            <tr><th>경매장 슬롯</th><td>+2</td><td>+4</td><td>+6</td><td>+8</td></tr>
+                            <tr><th>판매 슬롯</th><td>+2</td><td>+6</td><td>+12</td><td>+18</td></tr>
+                            <tr><th>엔더상자 슬롯</th><td>기본</td><td>+3</td><td>+9</td><td>+18</td></tr>
+                            <tr><th>Glow</th><td class="no">—</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+                            <tr><th>파티클</th><td class="no">—</td><td>기본</td><td>고급</td><td>전체</td></tr>
+                            <tr><th>mcMMO 경험치</th><td>기본</td><td>+10%</td><td>+20%</td><td>+25%</td></tr>
+                            <tr><th>일일 보상</th><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+                            <tr><th>주간 보상</th><td class="no">—</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+                            <tr><th>월간 보상</th><td class="no">—</td><td class="no">—</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+                            <tr><th>전용 보물</th><td class="no">—</td><td class="no">—</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+                            <tr><th>Hex / 그라데이션</th><td class="no">—</td><td class="no">—</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+                            <tr><th>고급 꾸미기</th><td class="no">—</td><td class="no">—</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+                            <tr><th>전용 Discord 역할</th><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+                            <tr><th>전용 Discord 채널</th><td class="no">—</td><td class="no">—</td><td class="no">—</td><td class="yes">✓</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="section-head">
+                <h2 class="section-title">후원 전 확인</h2>
+                <span class="section-label">NOTICE</span>
+            </div>
+
+            <div class="notice-list">
+                <div class="notice-item">
+                    <strong>01 · 공식 창구</strong><br>
+                    반드시 안내된 공식 후원 수단을 이용해 주세요.
+                </div>
+
+                <div class="notice-item">
+                    <strong>02 · 캐시 지급</strong><br>
+                    입금 및 상품권 확인 후 해당 기준에 따라 캐시가 지급됩니다.
+                </div>
+
+                <div class="notice-item">
+                    <strong>03 · 상품권 차감</strong><br>
+                    문화상품권은 10%가 차감된 수치로 캐시가 지급됩니다.
+                </div>
+
+                <div class="notice-item">
+                    <strong>04 · 문의</strong><br>
+                    후원 관련 문의는 공식 문의 창구를 이용해 주세요.
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        2026 Roen. <strong>All rights reserved.</strong>
+    </footer>
+
+</div>
+
+</body>
+</html>

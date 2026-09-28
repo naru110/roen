@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>콘텐츠 위키 · 로엔 야생</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#090b0f;--card:#10141a;--hover:#171c23;--border:#232a33;--text:#f3f5f7;--muted:#8f99a6;--accent:#8b7cff;--reward:#62a8ff;--engraving:#b07cff;--treasure:#ffb84d;--world:#59d39a;--system:#7f8cff;--community:#ff7198;--utility:#5ed6d1;--admin:#ff6b6b}
+body{min-height:100vh;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Sans KR",sans-serif}
+.header{width:min(1000px,calc(100% - 40px));margin:auto;padding:26px 0;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
+.brand{text-decoration:none;color:var(--text);font-weight:700;font-size:18px}
+.back{text-decoration:none;color:var(--muted);font-size:13px}.back:hover{color:var(--text)}
+main{width:min(1000px,calc(100% - 40px));margin:auto;padding:68px 0 80px}
+.eyebrow{color:var(--accent);font-size:11px;font-weight:700;letter-spacing:1.4px;margin-bottom:12px}
+h1{font-size:36px;letter-spacing:-1.4px;margin-bottom:10px}
+.hero>p{color:var(--muted);font-size:14px;line-height:1.7}
+.search{margin:30px 0 20px}.search input{width:100%;height:52px;padding:0 18px;background:var(--card);border:1px solid var(--border);border-radius:11px;color:var(--text);outline:0;font-size:14px}.search input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(139,124,255,.08)}.search input::placeholder{color:#68717c}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:28px}.tab{border:1px solid var(--border);background:var(--card);color:var(--muted);padding:9px 13px;border-radius:9px;font-size:12px;cursor:pointer}.tab.active,.tab:hover{color:var(--text);border-color:#3a424c;background:var(--hover)}
+.section{margin-top:48px;position:relative}.section:first-of-type{margin-top:0}.section-title{font-size:21px;letter-spacing:-.5px;margin-bottom:13px}.section-title:before{content:"";display:inline-block;width:4px;height:20px;border-radius:4px;background:var(--accent);margin-right:10px;vertical-align:-2px}.content-section[data-category="reward"] .section-title:before{background:var(--reward)}.content-section[data-category="engraving"] .section-title:before{background:var(--engraving)}.content-section[data-category="treasure"] .section-title:before{background:var(--treasure)}.content-section[data-category="world"] .section-title:before{background:var(--world)}.content-section[data-category="commands"] .section-title:before{background:var(--system)}.section-desc{color:var(--muted);font-size:13px;line-height:1.7;margin-bottom:16px}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:21px;position:relative;overflow:hidden}.card:before{content:"";position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--accent);opacity:.65}.content-section[data-category="reward"] .card:before{background:var(--reward)}.content-section[data-category="treasure"] .card:before{background:var(--treasure)}.content-section[data-category="world"] .card:before{background:var(--world)}.content-section[data-category="engraving"] .card:before{background:var(--engraving)}.card h3{font-size:15px;margin-bottom:12px;letter-spacing:-.3px}.card p,.card li{font-size:13px;color:var(--muted);line-height:1.75}.card ul{padding-left:17px}.card li+li{margin-top:4px}
+.table-wrap{overflow:auto;background:var(--card);border:1px solid var(--border);border-radius:12px}.table{width:100%;border-collapse:collapse;min-width:560px}.table th,.table td{padding:12px 15px;border-bottom:1px solid var(--border);text-align:left;font-size:12.5px}.table th{color:var(--text);font-weight:600;background:#0d1116}.content-section[data-category="reward"] .table th{color:#a9d1ff}.content-section[data-category="engraving"] .table th{color:#d0b0ff}.content-section[data-category="world"] .table th{color:#a7f0cc}.table td{color:var(--muted)}.table tr:last-child td{border-bottom:0}
+.badge{display:inline-block;padding:4px 7px;border:1px solid var(--border);border-radius:6px;font-size:10px;margin-right:6px}
+.tier{font-weight:700;white-space:nowrap}.normal{color:#d9d9d9}.advanced{color:#55ff55}.rare{color:#55ffff}.hero-tier{color:#c07cff}.legend{color:#ffaa00}.mythic{color:#ff5555}.tier.normal{background:rgba(217,217,217,.07)}.tier.advanced{background:rgba(85,255,85,.06)}.tier.rare{background:rgba(85,255,255,.06)}.tier.hero-tier{background:rgba(170,0,255,.07)}.tier.legend{background:rgba(255,170,0,.07)}.tier.mythic{background:rgba(255,85,85,.07)}
+.notice{padding:18px 20px;border:1px solid var(--border);background:var(--card);border-radius:12px;color:var(--muted);font-size:12.5px;line-height:1.7}
+.system-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.system-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:18px;position:relative;overflow:hidden}.system-card:before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--system)}.system-card:nth-child(1):before{background:#8b7cff}.system-card:nth-child(2):before{background:#5ed6d1}.system-card:nth-child(3):before{background:#62a8ff}.system-card:nth-child(4):before{background:#a0a7b4}.system-card:nth-child(5):before{background:#b07cff}.system-card:nth-child(6):before{background:#59d39a}.system-card:nth-child(7):before{background:#f0c35a}.system-card:nth-child(8):before{background:#ff7198}.system-card:nth-child(9):before{background:#59d39a}.system-card:nth-child(10):before{background:#ff7198}.system-card:nth-child(11):before{background:#5ed6d1}.system-card:nth-child(12):before{background:#ff6b6b}.system-head{display:flex;align-items:center;gap:10px;margin-bottom:14px}.system-head h3{font-size:14px;letter-spacing:-.2px}.system-no{font-size:10px;font-weight:700;letter-spacing:1px;color:var(--accent);font-family:ui-monospace,SFMono-Regular,Consolas,monospace}.system-card:nth-child(2) .system-no{color:#5ed6d1}.system-card:nth-child(3) .system-no{color:#62a8ff}.system-card:nth-child(4) .system-no{color:#a0a7b4}.system-card:nth-child(5) .system-no{color:#b07cff}.system-card:nth-child(6) .system-no{color:#59d39a}.system-card:nth-child(7) .system-no{color:#f0c35a}.system-card:nth-child(8) .system-no{color:#ff7198}.system-card:nth-child(9) .system-no{color:#59d39a}.system-card:nth-child(10) .system-no{color:#ff7198}.system-card:nth-child(11) .system-no{color:#5ed6d1}.system-card:nth-child(12) .system-no{color:#ff6b6b}.cmd-list{display:flex;flex-wrap:wrap;gap:6px}.cmd-list span{display:inline-flex;align-items:center;min-height:30px;padding:6px 9px;border:1px solid var(--border);border-radius:7px;background:#0f1317;color:#9aa3ae;font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:11px;transition:.15s}.cmd-list span:hover{color:var(--text);border-color:#3a424c;background:var(--hover)}
+.reward-tag,.treasure-tag,.world-tag{display:inline-flex;align-items:center;gap:5px;padding:4px 8px;border-radius:6px;font-size:10px;font-weight:700;margin-bottom:10px}.reward-tag{color:#9ccaff;background:rgba(98,168,255,.09);border:1px solid rgba(98,168,255,.2)}.treasure-tag{color:#ffd08a;background:rgba(255,184,77,.09);border:1px solid rgba(255,184,77,.2)}.world-tag{color:#9be9c2;background:rgba(89,211,154,.09);border:1px solid rgba(89,211,154,.2)}.grade-legend{display:flex;flex-wrap:wrap;gap:7px;margin:0 0 15px}.grade-legend span{padding:5px 8px;border:1px solid var(--border);border-radius:7px;font-size:10px;font-weight:700}.grade-legend .g1{color:#d9d9d9}.grade-legend .g2{color:#55ff55}.grade-legend .g3{color:#55ffff}.grade-legend .g4{color:#c07cff}.grade-legend .g5{color:#ffaa00}.grade-legend .g6{color:#ff5555}.empty{display:none;text-align:center;padding:40px;color:var(--muted);border:1px solid var(--border);border-radius:12px;background:var(--card)}
+footer{text-align:center;padding:0 20px 30px;color:#626b76;font-size:12px}
+@media(max-width:720px){main{padding-top:52px}.grid,.system-grid{grid-template-columns:1fr}h1{font-size:31px}}
+@media(max-width:480px){.header,main{width:min(100% - 28px,1000px)}.card,.system-card{padding:16px}.cmd-list span{font-size:10.5px}}
+</style>
+</head>
+<body>
+<header class="header"><a class="brand" href="../index.html">로엔 야생</a><a class="back" href="../index.html">← 메인으로</a></header>
+<main>
+<section class="hero">
+<div class="eyebrow">PORTAL 06 · CONTENT WIKI</div>
+<h1>콘텐츠 위키</h1>
+<p>로엔 야생에서 이용할 수 있는 보상, 각인, 보물, 월드 정보를 한곳에서 확인하세요.</p>
+</section>
+
+<div class="search"><input id="search" type="search" placeholder="콘텐츠 검색..." autocomplete="off"></div>
+<nav class="tabs">
+<button class="tab active" data-target="all">전체</button>
+<button class="tab" data-target="reward">보상</button>
+<button class="tab" data-target="engraving">각인</button>
+<button class="tab" data-target="treasure">보물</button>
+<button class="tab" data-target="world">월드</button>
+<button class="tab" data-target="commands">기타 시스템</button>
+</nav>
+
+<section class="section content-section" data-category="reward" id="reward">
+<h2 class="section-title">보상</h2>
+<p class="section-desc">보물상자, 추천보상, 일일·주간 퀘스트 보상, 플레이타임 보상, 추천 파티 보상, 접속 보상으로 구성됩니다.</p>
+<div class="grid">
+<article class="card"><span class="reward-tag">REWARD · 추천</span><h3>추천보상</h3><ul><li>/vote 로 추천시 추천 보물상자 열쇠 x1, 일반 랜덤 각인서 x1, 3,000G 지급</li><li>하루 1회 가능</li><li>/추천보상 명령어로 추천 여부 확인</li><li>/추천보상초기화 명령어로 추천 미지급시 재시도 기회 부여 (OP)</li></ul></article>
+<article class="card"><span class="reward-tag">REWARD · QUEST</span><h3>일일 / 주간 퀘스트 보상</h3><ul><li>일일(3), 주간(1) 퀘스트 달성시 보상 획득</li><li>일일 퀘스트 달성시 일반~고급, 주간 퀘스트 달성시 희귀~영웅 랜덤 각인서 획득</li><li>일일 퀘스트는 하루 총 3개 × 각 3회 즉 9번 클리어 가능</li><li>퀘스트 보상으로 얻는 각인서는 등급이 낮은 각인서 일수록 등장확률이 높음</li></ul></article>
+<article class="card"><span class="reward-tag">REWARD · PARTY</span><h3>추천 파티 보상</h3><p>서버 일일 추천량이 25회가 넘어갈시 서버에 있는 모든 유저에게 추천 열쇠 x1 을 지급함</p></article>
+<article class="card"><span class="reward-tag">REWARD · LOGIN</span><h3>접속 보상</h3><ul><li>출석체크 시스템 유사함</li><li>연속체크 3일, 5일, 10일, 1달이 확인되면 그때마다 추가 보상 지급함</li><li>기본 접속보상: 2,000G, 10CASH</li></ul></article>
+</div>
+<div class="section">
+<h3 class="section-title" style="font-size:17px">플레이타임 보상</h3>
+<p class="section-desc">플레이타임에 따라 보상을 얻는 시스템입니다. 30분, 1시간, 2시간, 4시간, 6시간, 12시간을 기본 보상으로 잡고, 주간 퀘스트 누적 3회 달성시 1일, 2일, 3일 누적 보상이 추가로 열립니다.</p>
+<div class="table-wrap"><table class="table"><thead><tr><th>플레이타임</th><th>보상</th></tr></thead><tbody>
+<tr><td>30분</td><td>일반 열쇠 x1, +3,000G</td></tr><tr><td>1시간</td><td>고급 열쇠 x1, +3,000G</td></tr><tr><td>2시간</td><td>고급 열쇠 x1, +5,000G</td></tr><tr><td>4시간</td><td>희귀 열쇠 x1, +3,000G</td></tr><tr><td>6시간</td><td>희귀 열쇠 x1, +5,000G</td></tr><tr><td>12시간</td><td>영웅 열쇠 x1, +3,000G</td></tr><tr><td>1일</td><td>영웅 열쇠 x1, 5,000G</td></tr><tr><td>2일</td><td>영웅 열쇠 x1, 10,000G</td></tr><tr><td>3일</td><td>전설 열쇠 x1, 10,000G</td></tr>
+</tbody></table></div>
+</div>
+<div class="section">
+<h3 class="section-title" style="font-size:17px">접속 보상</h3>
+<div class="table-wrap"><table class="table"><thead><tr><th>연속 접속</th><th>보상</th></tr></thead><tbody>
+<tr><td>기본</td><td>2,000G, 10CASH</td></tr><tr><td>3일</td><td>기본 접속보상 + 일반 열쇠 x1 + 일반 랜덤 각인서 x1</td></tr><tr><td>5일</td><td>기본 접속보상 + 고급 열쇠 x1 + 고급 랜덤 각인서 x1</td></tr><tr><td>10일</td><td>기본 접속보상 + 희귀 열쇠 x1 + 희귀 랜덤 각인서 x1</td></tr><tr><td>1달</td><td>기본 접속보상 + 영웅 열쇠 x1 + 영웅 랜덤 각인서 x1</td></tr>
+</tbody></table></div></div>
+</section>
+
+<section class="section content-section" data-category="engraving" id="engraving">
+<h2 class="section-title">각인 목록</h2>
+<p class="section-desc">기본 마인크래프트 인챈트와 별개의 장비 능력 시스템입니다.</p><div class="grade-legend"><span class="g1">일반</span><span class="g2">고급</span><span class="g3">희귀</span><span class="g4">영웅</span><span class="g5">전설</span><span class="g6">신화</span></div>
+<div class="table-wrap"><table class="table" id="engravingTable"><thead><tr><th>등급</th><th>각인</th><th>효과</th><th>적용 장비</th></tr></thead><tbody>
+<tr><td class="tier normal">일반</td><td>치명타</td><td>기본 공격 시 추가 피해를 입힙니다.</td><td>검, 도끼</td></tr>
+<tr><td class="tier normal">일반</td><td>헤드샷</td><td>머리 공격 시 추가 피해를 입힙니다.</td><td>활, 쇠뇌</td></tr>
+<tr><td class="tier normal">일반</td><td>아이기스</td><td>방패의 내구도를 회복합니다.</td><td>방패</td></tr>
+<tr><td class="tier normal">일반</td><td>식탐</td><td>타격 시 배고픔을 회복합니다.</td><td>검</td></tr>
+<tr><td class="tier normal">일반</td><td>서리갑옷</td><td>공격한 적에게 둔화 효과를 부여합니다.</td><td>흉갑</td></tr>
+<tr><td class="tier normal">일반</td><td>약점 발현</td><td>공격한 적에게 나약함 효과를 부여합니다.</td><td>검</td></tr>
+<tr><td class="tier normal">일반</td><td>호흡기</td><td>물속에서 채굴 시 공기를 회복합니다.</td><td>투구</td></tr>
+<tr><td class="tier normal">일반</td><td>소화</td><td>불이 붙었을 때 높은 확률로 화염을 제거합니다.</td><td>바지</td></tr>
+<tr><td class="tier normal">일반</td><td>몬스터 학살자</td><td>몬스터에게 주는 피해가 증가합니다.</td><td>검, 도끼</td></tr>
+<tr><td class="tier normal">일반</td><td>슈퍼점프</td><td>웅크린 상태에서 점프하면 높게 도약합니다.</td><td>신발</td></tr>
+<tr><td class="tier advanced">고급</td><td>불굴</td><td>피격 시 방어구 내구도를 회복합니다.</td><td>모든 갑옷</td></tr>
+<tr><td class="tier advanced">고급</td><td>베놈</td><td>공격 시 독 피해를 부여합니다.</td><td>검</td></tr>
+<tr><td class="tier advanced">고급</td><td>버서커</td><td>힘과 허기 효과를 획득합니다.</td><td>검, 도끼</td></tr>
+<tr><td class="tier advanced">고급</td><td>화염 갑주</td><td>피격 시 공격한 적을 불태웁니다.</td><td>바지</td></tr>
+<tr><td class="tier advanced">고급</td><td>혼비백산</td><td>공격한 적의 인벤토리를 무작위로 섞습니다.</td><td>검</td></tr>
+<tr><td class="tier advanced">고급</td><td>폭발화살</td><td>발사한 화살이 폭발합니다.</td><td>활, 쇠뇌</td></tr>
+<tr><td class="tier advanced">고급</td><td>비행 가속</td><td>겉날개의 비행 속도가 증가합니다.</td><td>겉날개</td></tr>
+<tr><td class="tier advanced">고급</td><td>반중력</td><td>점프 강화 효과를 획득합니다.</td><td>신발</td></tr>
+<tr><td class="tier advanced">고급</td><td>벌목</td><td>연결된 나무를 한번에 벌목합니다</td><td>도끼</td></tr>
+<tr><td class="tier rare">희귀</td><td>연격</td><td>일정 확률로 2배의 피해를 입힙니다.</td><td>검</td></tr>
+<tr><td class="tier rare">희귀</td><td>인듀어</td><td>넉백에 면역이 됩니다.</td><td>흉갑</td></tr>
+<tr><td class="tier rare">희귀</td><td>더블 스피어</td><td>삼지창 공격의 피해가 2배로 증가합니다.</td><td>삼지창</td></tr>
+<tr><td class="tier rare">희귀</td><td>올가미</td><td>공격한 적에게 둔화와 채굴 피로를 부여합니다.</td><td>검</td></tr>
+<tr><td class="tier rare">희귀</td><td>충격파</td><td>공격한 적을 강하게 밀어냅니다.</td><td>검</td></tr>
+<tr><td class="tier rare">희귀</td><td>야간투시경</td><td>야간 투시 효과를 획득합니다.</td><td>모자</td></tr>
+<tr><td class="tier rare">희귀</td><td>아가미</td><td>수중 호흡 효과를 획득합니다.</td><td>모자</td></tr>
+<tr><td class="tier rare">희귀</td><td>라바워커</td><td>용암 위를 걸을 수 있습니다.</td><td>신발</td></tr>
+<tr><td class="tier rare">희귀</td><td>애로우 브레이커</td><td>날아오는 화살을 파괴합니다.</td><td>검, 도끼</td></tr>
+<tr><td class="tier rare">희귀</td><td>아처 마스터리</td><td>화살의 피해량이 증가합니다.</td><td>활, 쇠뇌</td></tr>
+<tr><td class="tier rare">희귀</td><td>낙뢰</td><td>공격 시 번개와 함께 구속 및 채굴 피로를 부여합니다.</td><td>검</td></tr>
+<tr><td class="tier rare">희귀</td><td>돌진</td><td>전력 질주중 타격시 추가 피해와 넉백을 부여합니다.</td><td>검</td></tr>
+<tr><td class="tier hero-tier">영웅</td><td>격노</td><td>5회 연속 공격 시 추가 피해를 입힙니다.</td><td>검</td></tr>
+<tr><td class="tier hero-tier">영웅</td><td>격분</td><td>3회 연속 공격 시 추가 피해를 입힙니다.</td><td>도끼</td></tr>
+<tr><td class="tier hero-tier">영웅</td><td>흡혈</td><td>적 처치 시 체력을 회복합니다.</td><td>검</td></tr>
+<tr><td class="tier hero-tier">영웅</td><td>광맥</td><td>연결된 광맥을 한 번에 채굴합니다.</td><td>곡괭이</td></tr>
+<tr><td class="tier hero-tier">영웅</td><td>바다의 가호</td><td>전달체의 힘과 돌고래의 가호 효과를 획득합니다.</td><td>신발</td></tr>
+<tr><td class="tier hero-tier">영웅</td><td>가시갑옷</td><td>일정 피해를 무시하고 공격자에게 피해를 반사합니다.</td><td>모든 갑옷</td></tr>
+<tr><td class="tier hero-tier">영웅</td><td>학자</td><td>획득 경험치가 증가합니다.</td><td>모든 도구</td></tr>
+<tr><td class="tier hero-tier">영웅</td><td>원터치</td><td>3×3 범위의 농작물을 한 번에 수확합니다.</td><td>괭이</td></tr>
+<tr><td class="tier hero-tier">영웅</td><td>부유</td><td>공격한 적을 4초 동안 공중에 띄웁니다.</td><td>검</td></tr>
+<tr><td class="tier hero-tier">영웅</td><td>헤드샷</td><td>머리 저격 성공 시 큰 추가 피해를 입힙니다.</td><td>활</td></tr>
+<tr><td class="tier hero-tier">영웅</td><td>질주</td><td>신속 효과를 획득합니다.</td><td>신발</td></tr>
+<tr><td class="tier hero-tier">영웅</td><td>총알</td><td>우클릭 시 비행 속도가 증가합니다.</td><td>겉날개</td></tr>
+<tr><td class="tier legend">전설</td><td>금강</td><td>받는 피해가 감소합니다.</td><td>흉갑</td></tr>
+<tr><td class="tier legend">전설</td><td>수확</td><td>파괴한 블록을 자동으로 획득합니다.</td><td>모든 도구</td></tr>
+<tr><td class="tier legend">전설</td><td>전설의 낚시꾼</td><td>낚시 성공 시 추가 보상을 획득합니다.</td><td>낚싯대</td></tr>
+<tr><td class="tier legend">전설</td><td>생존본능</td><td>피격 시 체력을 회복합니다.</td><td>모자</td></tr>
+<tr><td class="tier legend">전설</td><td>썬더콤보</td><td>공격 시 번개를 소환합니다.</td><td>검</td></tr>
+<tr><td class="tier legend">전설</td><td>일타쌍피</td><td>공격 시 피해량이 크게 증가합니다.</td><td>도끼</td></tr>
+<tr><td class="tier legend">전설</td><td>헤이스트</td><td>채굴 시 일정 확률로 성급함 효과를 획득합니다.</td><td>모든 도구</td></tr>
+<tr><td class="tier legend">전설</td><td>약점포착</td><td>대상의 최대 체력에 비례한 추가 피해를 입힙니다.</td><td>검</td></tr>
+<tr><td class="tier legend">전설</td><td>단두대</td><td>플레이어 처치 시 머리를 드롭합니다.</td><td>도끼</td></tr>
+<tr><td class="tier legend">전설</td><td>제련</td><td>광물이 주괴 형태로 드롭됩니다.</td><td>곡괭이</td></tr>
+<tr><td class="tier legend">전설</td><td>포만감</td><td>10초마다 배고픔을 회복합니다.</td><td>모자</td></tr>
+<tr><td class="tier legend">전설</td><td>화염저항</td><td>화염 피해에 면역이 됩니다.</td><td>바지</td></tr>
+<tr><td class="tier legend">전설</td><td>체력신장</td><td>최대 체력이 증가합니다.</td><td>흉갑</td></tr>
+<tr><td class="tier legend">전설</td><td>깃털</td><td>낙하 피해를 무효화합니다.</td><td>신발</td></tr>
+<tr><td class="tier legend">전설</td><td>불카누스</td><td>장비 사용 시 내구도를 회복합니다.</td><td>모든 도구</td></tr>
+<tr><td class="tier legend">전설</td><td>분쇄</td><td>타격시 적의 방어구 내구도를 빠르게 감소시킵니다.</td><td>도끼</td></tr>
+<tr><td class="tier legend">전설</td><td>출혈</td><td>타격시 적에게 지속데미지를 입힙니다.</td><td>검, 도끼</td></tr>
+<tr><td class="tier mythic">신화</td><td>구세주</td><td>재생 효과를 획득합니다.</td><td>바지</td></tr>
+<tr><td class="tier mythic">신화</td><td>괴력</td><td>힘 효과를 획득합니다.</td><td>검, 도끼</td></tr>
+<tr><td class="tier mythic">신화</td><td>위협</td><td>공격 시 확률적으로 적의 모든 버프를 제거합니다.</td><td>검, 도끼</td></tr>
+<tr><td class="tier mythic">신화</td><td>정화</td><td>피격 시 확률적으로 자신의 모든 디버프를 제거합니다.</td><td>도끼</td></tr>
+<tr><td class="tier mythic">신화</td><td>탐욕</td><td>전리품, 광물, 작물 획득량이 2배로 증가합니다.</td><td>모든 도구</td></tr>
+<tr><td class="tier mythic">신화</td><td>생명력 흡수</td><td>적의 체력을 흡수하여 자신의 체력을 회복합니다.</td><td>검</td></tr>
+<tr><td class="tier mythic">신화</td><td>팔라딘</td><td>체력이 낮을떄 낮은 확률로 저항 과 재생 효과를 얻습니다</td><td>흉갑</td></tr>
+<tr><td class="tier mythic">신화</td><td>용의 분노</td><td>타격시 거대한 폭발과 강력한 광역 화염 공격을 일으킵니다</td><td>검</td></tr>
+<tr><td class="tier mythic">신화</td><td>과다 출혈</td><td>타격시 적에게 더욱 강한 지속 데미지를 입니힙낟 (출혈 필요)</td><td>검, 도끼</td></tr>
+</tbody></table></div>
+</section>
+
+<section class="section content-section" data-category="treasure" id="treasure">
+<h2 class="section-title">보물 뽑기 목록</h2>
+<p class="section-desc">추천 · 일반 · 고급 · 희귀 · 영웅 · 전설 · 신화 보물상자로 구성됩니다.</p>
+<div class="grid">
+<article class="card"><span class="treasure-tag">TREASURE · RECOMMEND</span><h3>추천 보물상자</h3><ul><li>일반 열쇠</li><li>고급 열쇠</li><li>희귀 열쇠</li><li>영웅 열쇠</li><li>전설 열쇠</li><li>신화 열쇠</li><li>10,000G</li><li>300 CASH</li><li>미스터리 광석</li><li>경험치 부스터</li><li>귀한 스크롤</li></ul></article><article class="card"><span class="treasure-tag">TREASURE · NORMAL</span><h3>일반 보물상자</h3><ul><li>일반 검,도끼,곡괭이,괭이,삽,삼지창,방패,활</li><li>고급 열쇠</li><li>희귀 열쇠</li><li>5,000G</li><li>50 CASH</li><li>일반 마력의 돌</li><li>일반 장비 각인서</li><li>홈 1개 추가권</li><li>발광 랜덤지급권</li><li>각인 각성 주문서</li></ul></article><article class="card"><span class="treasure-tag">TREASURE · ADVANCED</span><h3>고급 보물상자</h3><ul><li>고급 검,도끼,곡괭이,괭이,삽,삼지창,방패,활</li><li>희귀 열쇠</li><li>영웅 열쇠</li><li>10,000G</li><li>100 CASH</li><li>고급 마력의 돌</li><li>고급 장비 각인서</li><li>홈 2개 추가권</li><li>장비 수리권</li><li>발광 랜덤지급권</li><li>각인 각성 주문서</li></ul></article><article class="card"><span class="treasure-tag">TREASURE · RARE</span><h3>희귀 보물상자</h3><ul><li>희귀 검,도끼,곡괭이,괭이,삽,삼지창,방패,활</li><li>영웅 열쇠</li><li>전설 열쇠</li><li>15,000G</li><li>150 CASH</li><li>희귀 마력의 돌</li><li>희귀 장비 각인서</li><li>홈 3개 추가권</li><li>장비 수리권</li><li>장비 이름 변경권</li><li>발광 랜덤지급권</li><li>각인 각성 주문서</li></ul></article><article class="card"><span class="treasure-tag">TREASURE · HERO</span><h3>영웅 보물상자</h3><ul><li>영웅 검,도끼,곡괭이,괭이,삽,삼지창,방패,활</li><li>전설 열쇠</li><li>신화 열쇠</li><li>20,000G</li><li>200 CASH</li><li>영웅 마력의 돌</li><li>영웅 장비 각인서</li><li>홈 4개 추가권</li><li>장비 수리권</li><li>장비 이름 변경권</li><li>닉네임 변경권</li><li>발광 랜덤지급권</li><li>각인 각성 주문서</li></ul></article><article class="card"><span class="treasure-tag">TREASURE · LEGEND</span><h3>전설 보물상자</h3><ul><li>전설 검,도끼,곡괭이,괭이,삽,삼지창,방패,활,겉날개</li><li>신화 열쇠</li><li>25,000G</li><li>250 CASH</li><li>전설 마력의 돌</li><li>전설 장비 각인서</li><li>홈 5개 추가권</li><li>장비 수리권</li><li>장비 이름 변경권</li><li>닉네임 변경권</li><li>하트/불꽃/영혼/반짝임 투사체 이펙트</li><li>발광 랜덤지급권</li><li>각인 각성 주문서</li></ul></article><article class="card"><span class="treasure-tag">TREASURE · MYTHIC</span><h3>신화 보물상자</h3><ul><li>신화 검,도끼,곡괭이,괭이,삽,삼지창,방패,활,겉날개</li><li>40,000G</li><li>400 CASH</li><li>신화 마력의 돌</li><li>신화 장비 각인서</li><li>홈 6개 추가권</li><li>장비 수리권</li><li>장비 이름 변경권</li><li>닉네임 변경권</li><li>하트/불꽃/영혼/반짝임 투사체 이펙트</li><li>랜덤 칭호권</li><li>발광 랜덤지급권</li><li>각인 각성 주문서</li></ul></article></div></section>
+
+<section class="section content-section" data-category="world" id="world">
+<h2 class="section-title">월드 정보</h2>
+<p class="section-desc">야생, 자원, 아케이드·이벤트, 던전, 로비·튜토리얼 월드의 정보를 확인할 수 있습니다.</p>
+<div class="grid">
+<article class="card"><span class="world-tag">WORLD · SURVIVAL</span><h3>야생 월드</h3>
+    <div class="table-wrap"><table class="table" style="min-width:0"><tbody>
+    <tr><td>월드 이름</td><td>야생/거주 월드</td></tr><tr><td>월드 크기</td><td>20,000×20,000</td></tr><tr><td>난이도</td><td>Normal</td></tr><tr><td>거주 여부</td><td>O</td></tr><tr><td>초기화 여부</td><td>시즌마다 1회씩</td></tr><tr><td>테러방지</td><td>폭발방지: X / 화재확산: X / 물·용암 사용: O / 고의트랩: 가능하지만 사용시 매우 강한 처벌 부여</td></tr><tr><td>인벤세이브</td><td>O</td></tr><tr><td>PvP</td><td>가능하지만 무단 PvP시 규정에 의하여 강한 처벌 및 패널티 부여</td></tr><tr><td>복구 / 자동감지</td><td>O</td></tr>
+    </tbody></table></div></article><article class="card"><span class="world-tag">WORLD · RESOURCE</span><h3>자원 월드</h3>
+    <div class="table-wrap"><table class="table" style="min-width:0"><tbody>
+    <tr><td>월드 이름</td><td>자원 월드</td></tr><tr><td>월드 크기</td><td>10,000×10,000</td></tr><tr><td>난이도</td><td>Normal</td></tr><tr><td>거주 여부</td><td>X</td></tr><tr><td>초기화 여부</td><td>한달마다 1회씩</td></tr><tr><td>테러방지</td><td>폭발방지: O / 화재확산: O / 물·용암 사용: O / 고의트랩: O</td></tr><tr><td>인벤세이브</td><td>O</td></tr><tr><td>PvP</td><td>O</td></tr><tr><td>복구 / 자동감지</td><td>X</td></tr>
+    </tbody></table></div></article><article class="card"><span class="world-tag">WORLD · ARCADE</span><h3>아케이드 / 이벤트</h3>
+    <div class="table-wrap"><table class="table" style="min-width:0"><tbody>
+    <tr><td>월드 이름</td><td>아케이드 월드</td></tr><tr><td>월드 크기</td><td>비공개</td></tr><tr><td>난이도</td><td>Normal</td></tr><tr><td>거주 여부</td><td>X</td></tr><tr><td>초기화 여부</td><td>X</td></tr><tr><td>테러방지</td><td>블럭 설치/파괴: X / 폭발방지: X / 화재확산: X / 물·용암 사용: X / 고의트랩: X</td></tr><tr><td>인벤세이브</td><td>O</td></tr><tr><td>PvP</td><td>O</td></tr><tr><td>복구 / 자동감지</td><td>O</td></tr>
+    </tbody></table></div></article><article class="card"><span class="world-tag">WORLD · DUNGEON</span><h3>던전</h3>
+    <div class="table-wrap"><table class="table" style="min-width:0"><tbody>
+    <tr><td>월드 이름</td><td>던전 월드</td></tr><tr><td>월드 크기</td><td>비공개</td></tr><tr><td>난이도</td><td>Hard</td></tr><tr><td>거주 여부</td><td>X</td></tr><tr><td>초기화 여부</td><td>X</td></tr><tr><td>테러방지</td><td>블럭 설치/파괴: X / 폭발방지: X / 화재확산: X / 물·용암 사용: X / 고의트랩: X</td></tr><tr><td>인벤세이브</td><td>O</td></tr><tr><td>PvP</td><td>O</td></tr><tr><td>복구 / 자동감지</td><td>O</td></tr>
+    </tbody></table></div></article><article class="card"><span class="world-tag">WORLD · LOBBY</span><h3>로비 / 튜토리얼</h3>
+    <div class="table-wrap"><table class="table" style="min-width:0"><tbody>
+    <tr><td>월드 이름</td><td>로비/허브 월드</td></tr><tr><td>월드 크기</td><td>비공개</td></tr><tr><td>난이도</td><td>Peaceful</td></tr><tr><td>거주 여부</td><td>X</td></tr><tr><td>초기화 여부</td><td>X</td></tr><tr><td>테러방지</td><td>블럭 설치/파괴: X / 폭발방지: X / 화재확산: X / 물·용암 사용: X / 고의트랩: X</td></tr><tr><td>인벤세이브</td><td>O</td></tr><tr><td>PvP</td><td>X</td></tr><tr><td>복구 / 자동감지</td><td>O</td></tr>
+    </tbody></table></div></article></div></section>
+
+<section class="section content-section" data-category="commands" id="commands">
+<h2 class="section-title">기타 시스템</h2>
+<p class="section-desc">서버에서 제공되는 기타 시스템과 관련 명령어를 기능별로 정리했습니다.</p>
+
+<div class="system-grid">
+<article class="system-card">
+  <div class="system-head"><span class="system-no">01</span><h3>기본 · 이동</h3></div>
+  <div class="cmd-list">
+    <span>/공지</span><span>/도움말</span><span>/내정보</span><span>/스폰</span><span>/home</span><span>/sethome</span><span>/delhome</span><span>/homes</span><span>/tpa</span><span>/tpaccept</span><span>/tpadeny</span><span>/랜덤텔포</span><span>/back</span><span>/워프</span>
+  </div>
+</article>
+
+<article class="system-card">
+  <div class="system-head"><span class="system-no">02</span><h3>메뉴 · 편의</h3></div>
+  <div class="cmd-list">
+    <span>/메뉴</span><span>/개인설정</span><span>/랭크</span><span>/플레이타임</span><span>/우편함</span><span>/보관함</span><span>/craft</span><span>/trash</span><span>/ec</span><span>/도감</span>
+  </div>
+</article>
+
+<article class="system-card">
+  <div class="system-head"><span class="system-no">03</span><h3>경제 · 거래</h3></div>
+  <div class="cmd-list">
+    <span>/돈</span><span>/송금</span><span>/돈랭킹</span><span>/상점</span><span>/판매</span><span>/전체판매</span><span>/경매장</span><span>/거래</span>
+  </div>
+</article>
+
+<article class="system-card">
+  <div class="system-head"><span class="system-no">04</span><h3>아이템 관리</h3></div>
+  <div class="cmd-list">
+    <span>/item</span><span>/items</span><span>/itemedit</span><span>/itemremove</span><span>/itemgive</span>
+  </div>
+</article>
+
+<article class="system-card">
+  <div class="system-head"><span class="system-no">05</span><h3>각인 · 칭호 · 보상</h3></div>
+  <div class="cmd-list">
+    <span>/각인</span><span>/칭호</span><span>/칭호목록</span><span>/보상</span><span>/보물정보</span><span>/추천</span><span>/퀘스트</span><span>/시즌패스</span><span>/업적</span>
+  </div>
+</article>
+
+<article class="system-card">
+  <div class="system-head"><span class="system-no">06</span><h3>파티</h3></div>
+  <div class="cmd-list">
+    <span>/파티</span><span>/파티 생성</span><span>/파티 초대</span><span>/파티 수락</span><span>/파티 거절</span><span>/파티 떠나기</span><span>/파티 추방</span><span>/파티 채팅</span><span>/파티 해산</span><span>/파티 워프</span>
+  </div>
+</article>
+
+<article class="system-card">
+  <div class="system-head"><span class="system-no">07</span><h3>마을</h3></div>
+  <div class="cmd-list">
+    <span>/마을</span><span>/마을 생성</span><span>/마을 해체</span><span>/마을 초대</span><span>/마을 수락</span><span>/마을 거절</span><span>/마을 떠나기</span><span>/마을 추방</span><span>/마을 진급</span><span>/마을 강등</span><span>/마을 목록</span><span>/마을 채팅</span><span>/마을 땅구매</span><span>/마을 땅판매</span><span>/마을 지도</span><span>/마을 스폰설정</span><span>/마을 스폰</span><span>/마을 은행</span><span>/마을 창고</span>
+  </div>
+</article>
+
+<article class="system-card">
+  <div class="system-head"><span class="system-no">08</span><h3>던전</h3></div>
+  <div class="cmd-list">
+    <span>/던전</span><span>/던전정보</span><span>/던전기록</span><span>/던전랭킹</span><span>/던전보상</span>
+  </div>
+</article>
+
+<article class="system-card">
+  <div class="system-head"><span class="system-no">09</span><h3>월드 · 이동</h3></div>
+  <div class="cmd-list">
+    <span>/야생</span><span>/자원</span><span>/아케이드</span><span>/로비</span><span>/던전</span><span>/튜토리얼</span>
+  </div>
+</article>
+
+<article class="system-card">
+  <div class="system-head"><span class="system-no">10</span><h3>커뮤니티</h3></div>
+  <div class="cmd-list">
+    <span>/귓</span><span>/차단</span><span>/확성기</span><span>/신고</span><span>/이벤트</span><span>/랭킹</span><span>/wiki</span><span>/discord</span>
+  </div>
+</article>
+
+<article class="system-card">
+  <div class="system-head"><span class="system-no">11</span><h3>생활 · 유틸리티</h3></div>
+  <div class="cmd-list">
+    <span>/양조장</span><span>/sit</span><span>/lay</span><span>/hat</span><span>/near</span><span>/compass</span><span>/ptime</span><span>/pweather</span>
+  </div>
+</article>
+
+<article class="system-card">
+  <div class="system-head"><span class="system-no">12</span><h3>관리 · 운영</h3></div>
+  <div class="cmd-list">
+    <span>/유저</span><span>/유저관리</span><span>/서버점검</span><span>/heal</span><span>/feed</span><span>/fly</span><span>/vanish</span><span>/god</span><span>/로그조사</span><span>/aitem</span><span>/atown</span><span>/aparty</span>
+  </div>
+</article>
+</div>
+</section>
+
+<div class="empty" id="empty">검색 결과가 없습니다.</div>
+</main>
+<footer>2026 Roen. <strong>All rights reserved.</strong></footer>
+<script>
+const search=document.getElementById('search');
+const sections=[...document.querySelectorAll('.content-section')];
+const tabs=[...document.querySelectorAll('.tab')];
+const empty=document.getElementById('empty');
+function apply(){
+ const q=search.value.trim().toLowerCase();
+ const active=document.querySelector('.tab.active').dataset.target;
+ let shown=0;
+ sections.forEach(s=>{
+   const cat=s.dataset.category;
+   const matchCat=active==='all'||cat===active;
+   const matchText=!q||s.innerText.toLowerCase().includes(q);
+   s.style.display=(matchCat&&matchText)?'block':'none';
+   if(matchCat&&matchText) shown++;
+ });
+ empty.style.display=shown?'none':'block';
+}
+tabs.forEach(t=>t.addEventListener('click',()=>{
+ tabs.forEach(x=>x.classList.remove('active'));t.classList.add('active');apply();
+}));
+search.addEventListener('input',apply);
+</script>
+</body>
+</html>

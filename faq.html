@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FAQ · 로엔 야생</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+:root {
+    --bg:#0b0d10;
+    --card:#11151a;
+    --card-hover:#151a20;
+    --border:#222830;
+    --text:#f1f3f5;
+    --muted:#8c96a3;
+    --accent:#8b7cff;
+}
+body {
+    min-height:100vh;
+    background:var(--bg);
+    color:var(--text);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Sans KR",sans-serif;
+}
+a { color:inherit; }
+.header {
+    width:min(900px,calc(100% - 40px));
+    margin:0 auto;
+    padding:28px 0;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    border-bottom:1px solid var(--border);
+}
+.brand {
+    text-decoration:none;
+    font-weight:700;
+    font-size:18px;
+    letter-spacing:-.4px;
+}
+.back {
+    color:var(--muted);
+    text-decoration:none;
+    font-size:13px;
+    transition:.2s;
+}
+.back:hover { color:var(--text); }
+
+main {
+    width:min(900px,calc(100% - 40px));
+    margin:0 auto;
+    padding:70px 0 80px;
+}
+.hero { margin-bottom:38px; }
+.eyebrow {
+    color:var(--accent);
+    font-size:11px;
+    font-weight:700;
+    letter-spacing:1.4px;
+    margin-bottom:12px;
+}
+h1 {
+    font-size:36px;
+    letter-spacing:-1.4px;
+    margin-bottom:10px;
+}
+.hero p {
+    color:var(--muted);
+    font-size:14px;
+    line-height:1.7;
+}
+.search {
+    margin-bottom:28px;
+}
+.search input {
+    width:100%;
+    height:52px;
+    padding:0 18px;
+    border:1px solid var(--border);
+    border-radius:11px;
+    background:var(--card);
+    color:var(--text);
+    font-size:14px;
+    outline:none;
+    transition:.2s;
+}
+.search input:focus {
+    border-color:var(--accent);
+    box-shadow:0 0 0 3px rgba(139,124,255,.08);
+}
+.search input::placeholder { color:#68717c; }
+
+.faq-list {
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+}
+.faq-card {
+    display:grid;
+    grid-template-columns:48px 1fr;
+    gap:18px;
+    padding:24px;
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:13px;
+    transition:.2s;
+}
+.faq-card:hover {
+    background:var(--card-hover);
+    border-color:#343c46;
+}
+.faq-number {
+    color:var(--accent);
+    font-size:12px;
+    font-weight:700;
+    padding-top:3px;
+    letter-spacing:.5px;
+}
+.faq-content h2 {
+    font-size:16px;
+    line-height:1.5;
+    font-weight:600;
+    letter-spacing:-.35px;
+    margin-bottom:13px;
+}
+.answer {
+    color:var(--muted);
+    font-size:13px;
+    line-height:1.8;
+}
+.answer p + p { margin-top:8px; }
+
+.notice {
+    margin-top:28px;
+    padding:20px 22px;
+    border:1px solid var(--border);
+    border-radius:13px;
+    background:var(--card);
+}
+.notice-title {
+    font-size:14px;
+    font-weight:600;
+    margin-bottom:7px;
+}
+.notice p {
+    color:var(--muted);
+    font-size:13px;
+    line-height:1.7;
+}
+
+.empty {
+    display:none;
+    padding:45px 20px;
+    text-align:center;
+    color:var(--muted);
+    border:1px solid var(--border);
+    border-radius:13px;
+    background:var(--card);
+}
+
+footer {
+    padding:0 20px 30px;
+    text-align:center;
+    color:#626b76;
+    font-size:12px;
+}
+
+@media (max-width:640px) {
+    .header { padding:22px 0; }
+    main { padding:52px 0 60px; }
+    h1 { font-size:31px; }
+    .faq-card {
+        grid-template-columns:1fr;
+        gap:10px;
+        padding:20px;
+    }
+    .faq-number { padding-top:0; }
+}
+</style>
+</head>
+<body>
+
+<header class="header">
+    <a href="index.html" class="brand">로엔 야생</a>
+    <a href="index.html" class="back">← 메인으로</a>
+</header>
+
+<main>
+    <section class="hero">
+        <div class="eyebrow">PORTAL 05 · FAQ</div>
+        <h1>자주 묻는 질문</h1>
+        <p>로엔을 처음 이용하면서 자주 궁금해하는 질문과 답변을 정리한 문서입니다.</p>
+    </section>
+
+    <div class="search">
+        <input id="searchInput" type="search" placeholder="질문과 답변 검색..." autocomplete="off">
+    </div>
+
+    <section class="faq-list" id="faqList">
+        
+        <article class="faq-card" data-search="로엔은 어떤 서버인가요? 로엔은 힐링과 자유로운 야생 생활을 중심으로 다양한 콘텐츠를 즐길 수 있는 마인크래프트 서버입니다. 야생에서 자유롭게 생활하면서 마을을 만들거나, 던전과 미니게임에 도전하고, mcMMO·각인·칭호·경제 등의 다양한 시스템을 함께 즐길 수 있습니다.">
+            <div class="faq-number">01</div>
+            <div class="faq-content">
+                <h2>로엔은 어떤 서버인가요?</h2>
+                <div class="answer"><p>로엔은 힐링과 자유로운 야생 생활을 중심으로 다양한 콘텐츠를 즐길 수 있는 마인크래프트 서버입니다.</p><p>야생에서 자유롭게 생활하면서 마을을 만들거나, 던전과 미니게임에 도전하고, mcMMO·각인·칭호·경제 등의 다양한 시스템을 함께 즐길 수 있습니다.</p></div>
+            </div>
+        </article>
+    
+        <article class="faq-card" data-search="서버에 처음 접속하면 무엇부터 해야 하나요? 처음 접속하면 로비 월드에서 시작합니다. 로비에 마련된 튜토리얼을 통해 서버의 기본적인 이용 방법을 확인한 뒤, 워프존을 이용하여 야생이나 자원 월드 등 원하는 콘텐츠로 이동할 수 있습니다. 처음이라면 서버 메뉴와 기본 명령어를 먼저 확인하는 것을 권장합니다.">
+            <div class="faq-number">02</div>
+            <div class="faq-content">
+                <h2>서버에 처음 접속하면 무엇부터 해야 하나요?</h2>
+                <div class="answer"><p>처음 접속하면 로비 월드에서 시작합니다.</p><p>로비에 마련된 튜토리얼을 통해 서버의 기본적인 이용 방법을 확인한 뒤, 워프존을 이용하여 야생이나 자원 월드 등 원하는 콘텐츠로 이동할 수 있습니다.</p><p>처음이라면 서버 메뉴와 기본 명령어를 먼저 확인하는 것을 권장합니다.</p></div>
+            </div>
+        </article>
+    
+        <article class="faq-card" data-search="야생 월드는 초기화되나요? 야생 월드는 초기화하지 않습니다. 플레이어가 오랜 시간 동안 집과 마을을 건설하고 발전시킬 수 있도록 장기적인 생활 공간으로 운영됩니다. 다만 서버 운영에 중대한 문제가 발생하거나 불가피한 상황이 발생할 경우 운영 정책에 따라 변경될 수 있습니다.">
+            <div class="faq-number">03</div>
+            <div class="faq-content">
+                <h2>야생 월드는 초기화되나요?</h2>
+                <div class="answer"><p>야생 월드는 초기화하지 않습니다.</p><p>플레이어가 오랜 시간 동안 집과 마을을 건설하고 발전시킬 수 있도록 장기적인 생활 공간으로 운영됩니다.</p><p>다만 서버 운영에 중대한 문제가 발생하거나 불가피한 상황이 발생할 경우 운영 정책에 따라 변경될 수 있습니다.</p></div>
+            </div>
+        </article>
+    
+        <article class="faq-card" data-search="자원 월드는 초기화되나요? 네. 자원 월드는 정기적으로 초기화됩니다. 기본적으로 매월 1회 초기화하며, 월드 내 자원이 크게 소모되어 정상적인 자원 수급이 어렵다고 판단되는 경우 추가 초기화가 진행될 수 있습니다. 자원 월드에 중요한 아이템이나 장기간 보관할 건축물을 두는 것은 권장하지 않습니다.">
+            <div class="faq-number">04</div>
+            <div class="faq-content">
+                <h2>자원 월드는 초기화되나요?</h2>
+                <div class="answer"><p>네. 자원 월드는 정기적으로 초기화됩니다.</p><p>기본적으로 매월 1회 초기화하며, 월드 내 자원이 크게 소모되어 정상적인 자원 수급이 어렵다고 판단되는 경우 추가 초기화가 진행될 수 있습니다.</p><p>자원 월드에 중요한 아이템이나 장기간 보관할 건축물을 두는 것은 권장하지 않습니다.</p></div>
+            </div>
+        </article>
+    
+        <article class="faq-card" data-search="야생이나 자원 월드에서 PvP가 가능한가요? 야생 및 자원 월드에서는 PvP가 가능합니다. 다만 로아리는 PvP를 중심으로 하는 서버가 아니기 때문에 무분별한 PvP와 반복적인 공격을 방지하기 위한 강력한 PvP 패널티가 적용됩니다. 지속적인 괴롭힘이나 고의적인 플레이 방해 등은 서버 규정에 따라 제재될 수 있습니다.">
+            <div class="faq-number">05</div>
+            <div class="faq-content">
+                <h2>야생이나 자원 월드에서 PvP가 가능한가요?</h2>
+                <div class="answer"><p>야생 및 자원 월드에서는 PvP가 가능합니다.</p><p>다만 로아리는 PvP를 중심으로 하는 서버가 아니기 때문에 무분별한 PvP와 반복적인 공격을 방지하기 위한 강력한 PvP 패널티가 적용됩니다.</p><p>지속적인 괴롭힘이나 고의적인 플레이 방해 등은 서버 규정에 따라 제재될 수 있습니다.</p></div>
+            </div>
+        </article>
+    
+        <article class="faq-card" data-search="다른 플레이어의 집을 파괴하거나 아이템을 가져가도 되나요? 허용되지 않습니다. 다른 플레이어의 건축물 파괴, 상자 및 아이템 약탈, 고의적인 폭발·화재 피해 등 타인의 플레이 환경을 훼손하는 행위는 서버 규정에 따라 처벌될 수 있습니다. 로아리는 자유로운 야생 생활을 지향하지만, 다른 플레이어의 공간과 재산을 존중하는 것을 기본 원칙으로 합니다.">
+            <div class="faq-number">06</div>
+            <div class="faq-content">
+                <h2>다른 플레이어의 집을 파괴하거나 아이템을 가져가도 되나요?</h2>
+                <div class="answer"><p>허용되지 않습니다.</p><p>다른 플레이어의 건축물 파괴, 상자 및 아이템 약탈, 고의적인 폭발·화재 피해 등 타인의 플레이 환경을 훼손하는 행위는 서버 규정에 따라 처벌될 수 있습니다.</p><p>로아리는 자유로운 야생 생활을 지향하지만, 다른 플레이어의 공간과 재산을 존중하는 것을 기본 원칙으로 합니다.</p></div>
+            </div>
+        </article>
+    
+        <article class="faq-card" data-search="자원 월드에서 얻은 아이템을 야생으로 가져올 수 있나요? 네. 자원 월드에서 획득한 자원은 자신의 아이템으로 자유롭게 사용할 수 있습니다. 다만 자원 월드가 초기화될 때 해당 월드에 남겨둔 아이템이나 시설은 사라질 수 있으므로, 중요한 아이템은 반드시 초기화 전에 안전한 장소로 이동해야 합니다.">
+            <div class="faq-number">07</div>
+            <div class="faq-content">
+                <h2>자원 월드에서 얻은 아이템을 야생으로 가져올 수 있나요?</h2>
+                <div class="answer"><p>네. 자원 월드에서 획득한 자원은 자신의 아이템으로 자유롭게 사용할 수 있습니다.</p><p>다만 자원 월드가 초기화될 때 해당 월드에 남겨둔 아이템이나 시설은 사라질 수 있으므로, 중요한 아이템은 반드시 초기화 전에 안전한 장소로 이동해야 합니다.</p></div>
+            </div>
+        </article>
+    
+        <article class="faq-card" data-search="각인은 무엇인가요? 각인은 기본 마인크래프트 인챈트와 별개로 장비에 특별한 능력을 부여하는 시스템입니다. 각인의 종류에 따라 전투, 방어, 채집, 생활 등 다양한 효과를 얻을 수 있으며, 여러 각인을 조합하여 자신만의 장비 세팅을 구성할 수 있습니다.">
+            <div class="faq-number">08</div>
+            <div class="faq-content">
+                <h2>각인은 무엇인가요?</h2>
+                <div class="answer"><p>각인은 기본 마인크래프트 인챈트와 별개로 장비에 특별한 능력을 부여하는 시스템입니다.</p><p>각인의 종류에 따라 전투, 방어, 채집, 생활 등 다양한 효과를 얻을 수 있으며, 여러 각인을 조합하여 자신만의 장비 세팅을 구성할 수 있습니다.</p></div>
+            </div>
+        </article>
+    
+        <article class="faq-card" data-search="보물은 무엇인가요? 보물은 열쇠를 사용하여 다양한 보상을 획득할 수 있는 보상 시스템입니다. 보물의 종류에 따라 획득 가능한 아이템과 확률이 다르며, 일반적인 방법으로 얻기 어려운 희귀한 보상이 포함될 수도 있습니다. 기존 서버에서 흔히 사용하는 크레이트(Crate) 시스템을 로아리에서는 '보물'이라는 이름으로 운영합니다.">
+            <div class="faq-number">09</div>
+            <div class="faq-content">
+                <h2>보물은 무엇인가요?</h2>
+                <div class="answer"><p>보물은 열쇠를 사용하여 다양한 보상을 획득할 수 있는 보상 시스템입니다.</p><p>보물의 종류에 따라 획득 가능한 아이템과 확률이 다르며, 일반적인 방법으로 얻기 어려운 희귀한 보상이 포함될 수도 있습니다.</p><p>기존 서버에서 흔히 사용하는 크레이트(Crate) 시스템을 로아리에서는 '보물'이라는 이름으로 운영합니다.</p></div>
+            </div>
+        </article>
+    
+        <article class="faq-card" data-search="서버에서 문제가 발생하거나 규정 위반을 발견하면 어떻게 하나요? 서버 이용 중 버그, 오류, 테러, 부정행위 또는 규정 위반 행위를 발견했다면 운영진에게 신고해 주세요. 신고할 때에는 가능한 한 다음과 같은 정보를 함께 전달하면 확인에 도움이 됩니다. 문제가 발생한 플레이어의 닉네임 발생한 시간 문제가 발생한 장소 상황에 대한 간단한 설명 가능하다면 스크린샷 또는 영상 허위 신고나 악의적인 신고는 오히려 제재 대상이 될 수 있으므로, 확인 가능한 사실을 중심으로 신고해 주세요.">
+            <div class="faq-number">10</div>
+            <div class="faq-content">
+                <h2>서버에서 문제가 발생하거나 규정 위반을 발견하면 어떻게 하나요?</h2>
+                <div class="answer"><p>서버 이용 중 버그, 오류, 테러, 부정행위 또는 규정 위반 행위를 발견했다면 운영진에게 신고해 주세요.</p><p>신고할 때에는 가능한 한 다음과 같은 정보를 함께 전달하면 확인에 도움이 됩니다.</p><p>문제가 발생한 플레이어의 닉네임</p><p>발생한 시간</p><p>문제가 발생한 장소</p><p>상황에 대한 간단한 설명</p><p>가능하다면 스크린샷 또는 영상</p><p>허위 신고나 악의적인 신고는 오히려 제재 대상이 될 수 있으므로, 확인 가능한 사실을 중심으로 신고해 주세요.</p></div>
+            </div>
+        </article>
+    
+    </section>
+
+    <div class="empty" id="empty">
+        검색 결과가 없습니다.
+    </div>
+
+    <section class="notice">
+        <div class="notice-title">💡 원하는 답변을 찾지 못하셨나요?</div>
+        <p>FAQ에 없는 내용은 서버 내 안내 또는 관련 위키 문서를 확인해 주세요. 그래도 해결되지 않는 문제가 있다면 운영진에게 문의해 주세요.</p>
+    </section>
+</main>
+
+<footer>
+    2026 Roen. <strong>All rights reserved.</strong>
+</footer>
+
+<script>
+const input = document.getElementById("searchInput");
+const cards = [...document.querySelectorAll(".faq-card")];
+const empty = document.getElementById("empty");
+
+input.addEventListener("input", () => {
+    const keyword = input.value.trim().toLowerCase();
+    let visible = 0;
+
+    cards.forEach(card => {
+        const text = card.dataset.search.toLowerCase();
+        const show = !keyword || text.includes(keyword);
+        card.style.display = show ? "grid" : "none";
+        if (show) visible++;
+    });
+
+    empty.style.display = visible ? "none" : "block";
+});
+</script>
+</body>
+</html>

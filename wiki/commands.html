@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>기본 명령어 · roen wiki</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#0b0d10;--card:#11151a;--card-hover:#171c22;--border:#222830;--text:#f1f3f5;--muted:#8c96a3;--accent:#8b7cff}
+body{min-height:100vh;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Sans KR",sans-serif;line-height:1.6}
+a{color:inherit}
+main{width:min(980px,calc(100% - 40px));margin:auto;padding:55px 0 70px}
+.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:55px}
+.back{text-decoration:none;color:var(--muted);font-size:13px;transition:.2s}
+.back:hover{color:var(--text)}
+.brand{font-size:14px;font-weight:700;letter-spacing:.2px}
+.hero{margin-bottom:28px}
+.kicker{color:var(--accent);font-size:11px;font-weight:700;letter-spacing:1.6px;margin-bottom:12px}
+h1{font-size:38px;letter-spacing:-1.4px;line-height:1.2}
+.hero p{margin-top:12px;color:var(--muted);font-size:14px}
+.toolbar{display:flex;gap:10px;margin:28px 0 34px}
+.search{flex:1;height:48px;padding:0 17px;background:var(--card);border:1px solid var(--border);border-radius:10px;color:var(--text);outline:none;font-size:14px}
+.search:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(139,124,255,.08)}
+.filter{height:48px;padding:0 16px;background:var(--card);border:1px solid var(--border);border-radius:10px;color:var(--muted);font-size:13px;outline:none}
+.command-section{background:var(--card);border:1px solid var(--border);border-radius:14px;margin-bottom:14px;overflow:hidden}
+.section-head{min-height:70px;padding:18px 22px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border)}
+.section-head>div{display:flex;align-items:center;gap:13px}
+.section-number{font-size:11px;color:var(--accent);font-weight:700;letter-spacing:1px}
+h2{font-size:17px;letter-spacing:-.4px}
+.count{font-size:11px;color:#68717c}
+.table-wrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse}
+th,td{padding:13px 22px;text-align:left;border-bottom:1px solid #1c2128;font-size:13px;vertical-align:middle}
+th{color:#6f7883;font-size:11px;font-weight:600;letter-spacing:.4px;background:#0f1317}
+tr:last-child td{border-bottom:0}
+td:first-child{width:38%;white-space:nowrap}
+code{font-family:"SFMono-Regular",Consolas,"Liberation Mono",monospace;color:#e6e9ed;font-size:12.5px}
+td:nth-child(2){color:#aab2bc}
+.badge{display:inline-block;margin-left:8px;padding:2px 6px;border:1px solid #343b45;border-radius:5px;color:#78828e;font-size:9px;vertical-align:2px}
+.hidden{display:none!important}
+.empty{display:none;text-align:center;color:var(--muted);padding:45px 20px;font-size:13px}
+footer{text-align:center;color:#626b76;font-size:12px;padding:0 20px 30px}
+@media(max-width:700px){
+ main{width:min(100% - 24px,980px);padding:32px 0 50px}
+ .top{margin-bottom:38px}
+ h1{font-size:31px}
+ .toolbar{flex-direction:column}
+ .filter{width:100%}
+ .section-head{padding:16px}
+ th,td{padding:12px 15px}
+ td:first-child{width:44%}
+}
+</style>
+</head>
+<body>
+<main>
+  <header class="top">
+    <span class="brand">로엔 야생</span>
+    <a class="back" href="../index.html">← 메인으로</a>
+  </header>
+
+  <section class="hero">
+    <div class="kicker">PORTAL 04 · WIKI</div>
+    <h1>기본 명령어</h1>
+    <p>로엔 야생에서 사용할 수 있는 명령어를 기능별로 확인하세요.</p>
+  </section>
+
+  <div class="toolbar">
+    <input id="search" class="search" type="search" placeholder="명령어 또는 기능 검색..." autocomplete="off">
+    <select id="filter" class="filter">
+      <option value="all">전체 카테고리</option>
+      <option value="던전 명령어">던전</option><option value="mcMMO 명령어">mcMMO</option><option value="마을 명령어">마을</option><option value="파티 명령어">파티</option><option value="각인 명령어">각인</option><option value="칭호 명령어">칭호</option><option value="경제 명령어">경제</option><option value="상점 명령어">상점</option><option value="메뉴 명령어">메뉴</option><option value="보상 명령어">보상</option><option value="기타 명령어">기타</option><option value="집 시스템">집 시스템</option><option value="보관함 시스템">보관함 시스템</option><option value="직업 시스템">직업 시스템</option><option value="퀘스트 시스템">퀘스트 시스템</option><option value="도전과제">도전과제</option><option value="미니게임 시스템">미니게임 시스템</option><option value="뉴비지원 시스템">뉴비지원 시스템</option><option value="보안 시스템">보안 시스템</option>
+    </select>
+  </div>
+
+  <div id="content">
+    
+    <section class="command-section" data-category="던전 명령어">
+      <div class="section-head">
+        <div>
+          <span class="section-number">01</span>
+          <h2>던전</h2>
+        </div>
+        <span class="count">7 commands</span>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>명령어</th><th>설명</th></tr></thead>
+          <tbody><tr class="command-row" data-search="/던전 던전으로 이동합니다">
+            <td><code>/던전</code></td>
+            <td>던전으로 이동합니다</td>
+        </tr><tr class="command-row" data-search="/던전메뉴 던전을 위한 편의성 메뉴입니다">
+            <td><code>/던전메뉴</code></td>
+            <td>던전을 위한 편의성 메뉴입니다</td>
+        </tr><tr class="command-row" data-search="/리젠 필드보스, 월드보스, 기타 몬스터의 재생성 시간을 보여줍니다">
+            <td><code>/리젠</code></td>
+            <td>필드보스, 월드보스, 기타 몬스터의 재생성 시간을 보여줍니다</td>
+        </tr><tr class="command-row" data-search="/상태창 몬스터를 잡은 횟수, 몬스터에게 죽은 횟수, 얻은 전리품 갯수, 최근 지역 등의 정보를 보여줍니다">
+            <td><code>/상태창</code></td>
+            <td>몬스터를 잡은 횟수, 몬스터에게 죽은 횟수, 얻은 전리품 갯수, 최근 지역 등의 정보를 보여줍니다</td>
+        </tr><tr class="command-row" data-search="/던전위치설정 (던전이름) (던전이름) 으로 된 던전 스폰 위치를 설정합니다">
+            <td><code>/던전위치설정 (던전이름)</code><span class="badge">관리자</span></td>
+            <td>(던전이름) 으로 된 던전 스폰 위치를 설정합니다</td>
+        </tr><tr class="command-row" data-search="/던전점검 (던전이름) (던전이름) 던전을 점검 on/off 상태로 전환합니다">
+            <td><code>/던전점검 (던전이름)</code><span class="badge">관리자</span></td>
+            <td>(던전이름) 던전을 점검 on/off 상태로 전환합니다</td>
+        </tr><tr class="command-row" data-search="/던전종료 (던전이름) 던전을 강제종료 시킵니다">
+            <td><code>/던전종료 (던전이름)</code><span class="badge">관리자</span></td>
+            <td>던전을 강제종료 시킵니다</td>
+        </tr></tbody>
+        </table>
+      </div>
+    </section>
+    <section class="command-section" data-category="mcMMO 명령어">
+      <div class="section-head">
+        <div>
+          <span class="section-number">02</span>
+          <h2>mcMMO</h2>
+        </div>
+        <span class="count">5 commands</span>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>명령어</th><th>설명</th></tr></thead>
+          <tbody><tr class="command-row" data-search="/(스킬이름) (스킬이름)의 능력치 및 기타 정보를 확인합니다">
+            <td><code>/(스킬이름)</code></td>
+            <td>(스킬이름)의 능력치 및 기타 정보를 확인합니다</td>
+        </tr><tr class="command-row" data-search="/스킬랭킹 (스킬이름) (스킬이름) 에 대한 랭킹을 표시합니다">
+            <td><code>/스킬랭킹 (스킬이름)</code></td>
+            <td>(스킬이름) 에 대한 랭킹을 표시합니다</td>
+        </tr><tr class="command-row" data-search="/내정보 가진 능력치에 대한 레벨 및 본인의 랭킹을 표시합니다">
+            <td><code>/내정보</code></td>
+            <td>가진 능력치에 대한 레벨 및 본인의 랭킹을 표시합니다</td>
+        </tr><tr class="command-row" data-search="/inspect (플레이어) 플레이어의 능력치를 확인합니다">
+            <td><code>/inspect (플레이어)</code><span class="badge">관리자</span></td>
+            <td>플레이어의 능력치를 확인합니다</td>
+        </tr><tr class="command-row" data-search="/능력치설정 (플레이어) (스킬이름) (레벨/경험치) (수치) 능력치 값을 재 설정합니다">
+            <td><code>/능력치설정 (플레이어) (스킬이름) (레벨/경험치) (수치)</code><span class="badge">관리자</span></td>
+            <td>능력치 값을 재 설정합니다</td>
+        </tr></tbody>
+        </table>
+      </div>
+    </section>
+    <section class="command-section" data-category="마을 명령어">
+      <div class="section-head">
+        <div>
+          <span class="section-number">03</span>
+          <h2>마을</h2>
+        </div>
+        <span class="count">15 commands</span>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>명령어</th><th>설명</th></tr></thead>
+          <tbody><tr class="command-row" data-search="/마을생성 (마을이름) 마을을 생성합니다">
+            <td><code>/마을생성 (마을이름)</code></td>
+            <td>마을을 생성합니다</td>
+        </tr><tr class="command-row" data-search="/마을제거 (마을장일때) 본인이 속한 마을을 제거합니다">
+            <td><code>/마을제거</code></td>
+            <td>(마을장일때) 본인이 속한 마을을 제거합니다</td>
+        </tr><tr class="command-row" data-search="/마을설정 메뉴 gui로 마을에 대한 권한을 설정합니다">
+            <td><code>/마을설정</code></td>
+            <td>메뉴 GUI로 마을에 대한 권한을 설정합니다</td>
+        </tr><tr class="command-row" data-search="/땅구매 서있는 청크의 땅을 구매합니다">
+            <td><code>/땅구매</code></td>
+            <td>서있는 청크의 땅을 구매합니다</td>
+        </tr><tr class="command-row" data-search="/땅판매 구매한 서있는 청크의 땅을 판매합니다">
+            <td><code>/땅판매</code></td>
+            <td>구매한 서있는 청크의 땅을 판매합니다</td>
+        </tr><tr class="command-row" data-search="/마을등급 (마을원) (마을등급) 마을원에 대한 마을등급을 설정합니다">
+            <td><code>/마을등급 (마을원) (마을등급)</code></td>
+            <td>마을원에 대한 마을등급을 설정합니다</td>
+        </tr><tr class="command-row" data-search="/마을떠나기 (마을장이 아닐때) 마을을 떠납니다">
+            <td><code>/마을떠나기</code></td>
+            <td>(마을장이 아닐때) 마을을 떠납니다</td>
+        </tr><tr class="command-row" data-search="/마을추방 (마을이름) (마을장일때) 마을의 마을원을 추방합니다">
+            <td><code>/마을추방 (마을이름)</code></td>
+            <td>(마을장일때) 마을의 마을원을 추방합니다</td>
+        </tr><tr class="command-row" data-search="/마을초대 (플레이어) 마을이 없는 플레이어에게 마을로 초대를 보냅니다">
+            <td><code>/마을초대 (플레이어)</code></td>
+            <td>마을이 없는 플레이어에게 마을로 초대를 보냅니다</td>
+        </tr><tr class="command-row" data-search="/마을수락 마을로의 초대를 수락합니다">
+            <td><code>/마을수락</code></td>
+            <td>마을로의 초대를 수락합니다</td>
+        </tr><tr class="command-row" data-search="/마을거절 마을로의 초대를 거절합니다">
+            <td><code>/마을거절</code></td>
+            <td>마을로의 초대를 거절합니다</td>
+        </tr><tr class="command-row" data-search="/마을채팅 마을 채팅을 on/off 합니다">
+            <td><code>/마을채팅</code></td>
+            <td>마을 채팅을 on/off 합니다</td>
+        </tr><tr class="command-row" data-search="/마을해체 (마을이름) 마을을 강제해체 시킵니다">
+            <td><code>/마을해체 (마을이름)</code><span class="badge">관리자</span></td>
+            <td>마을을 강제해체 시킵니다</td>
+        </tr><tr class="command-row" data-search="/마을입장 (마을이름) 마을에 강제로 입장합니다">
+            <td><code>/마을입장 (마을이름)</code><span class="badge">관리자</span></td>
+            <td>마을에 강제로 입장합니다</td>
+        </tr><tr class="command-row" data-search="/마을강제추방 (마을이름) (마을원) 마을에 있는 마을원을 강제 추방 시킵니다">
+            <td><code>/마을강제추방 (마을이름) (마을원)</code><span class="badge">관리자</span></td>
+            <td>마을에 있는 마을원을 강제 추방 시킵니다</td>
+        </tr></tbody>
+        </table>
+      </div>
+    </section>
+    <section class="command-section" data-category="파티 명령어">
+      <div class="section-head">
+        <div>
+          <span class="section-number">04</span>
+          <h2>파티</h2>
+        </div>
+        <span class="count">7 commands</span>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>명령어</th><th>설명</th></tr></thead>
+          <tbody><tr class="command-row" data-search="/파티생성 (파티이름) 파티를 생성합니다">
+            <td><code>/파티생성 (파티이름)</code></td>
+            <td>파티를 생성합니다</td>
+        </tr><tr class="command-row" data-search="/파티제거 파티를 제거합니다">
+            <td><code>/파티제거</code></td>
+            <td>파티를 제거합니다</td>
+        </tr><tr class="command-row" data-search="/파티정보 파티 참여인원, 생성시각등을 확인합니다">
+            <td><code>/파티정보</code></td>
+            <td>파티 참여인원, 생성시각등을 확인합니다</td>
+        </tr><tr class="command-row" data-search="/파티채팅 파티원들과 소통가능한 파티채팅을 사용합니다">
+            <td><code>/파티채팅</code></td>
+            <td>파티원들과 소통가능한 파티채팅을 사용합니다</td>
+        </tr><tr class="command-row" data-search="/파티해체 (파티이름) 파티를 강제로 해체 시킵니다">
+            <td><code>/파티해체 (파티이름)</code><span class="badge">관리자</span></td>
+            <td>파티를 강제로 해체 시킵니다</td>
+        </tr><tr class="command-row" data-search="/파티채팅접속 (파티이름) 파티의 파티채팅에 접속합니다">
+            <td><code>/파티채팅접속 (파티이름)</code><span class="badge">관리자</span></td>
+            <td>파티의 파티채팅에 접속합니다</td>
+        </tr><tr class="command-row" data-search="/파티초기화 (파티이름) 파티의 능력치, 정보 등을 초기화합니다">
+            <td><code>/파티초기화 (파티이름)</code><span class="badge">관리자</span></td>
+            <td>파티의 능력치, 정보 등을 초기화합니다</td>
+        </tr></tbody>
+        </table>
+      </div>
+    </section>
+    <section class="command-section" data-category="각인 명령어">
+      <div class="section-head">
+        <div>
+          <span class="section-number">05</span>
+          <h2>각인</h2>
+        </div>
+        <span class="count">5 commands</span>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>명령어</th><th>설명</th></tr></thead>
+          <tbody><tr class="command-row" data-search="/각인 각인 메뉴를 엽니다">
+            <td><code>/각인</code></td>
+            <td>각인 메뉴를 엽니다</td>
+        </tr><tr class="command-row" data-search="/각인분해 각인책을 분해합니다">
+            <td><code>/각인분해</code></td>
+            <td>각인책을 분해합니다</td>
+        </tr><tr class="command-row" data-search="/각인합성 각인들을 합성합니다">
+            <td><code>/각인합성</code></td>
+            <td>각인들을 합성합니다</td>
+        </tr><tr class="command-row" data-search="/각인부여 (플레이어) (각인) (레벨) 손에 든 장비에 각인을 부여합니다">
+            <td><code>/각인부여 (플레이어) (각인) (레벨)</code><span class="badge">관리자</span></td>
+            <td>손에 든 장비에 각인을 부여합니다</td>
+        </tr><tr class="command-row" data-search="/각인서지급 (플레이어) (각인) (레벨) (성공확률) (파괴확률) 각인서를 지급합니다">
+            <td><code>/각인서지급 (플레이어) (각인) (레벨) (성공확률) (파괴확률)</code><span class="badge">관리자</span></td>
+            <td>각인서를 지급합니다</td>
+        </tr></tbody>
+        </table>
+      </div>
+    </section>
+    <section class="command-section" data-category="칭호 명령어">
+      <div class="section-head">
+        <div>
+          <span class="section-number">06</span>
+          <h2>칭호</h2>
+        </div>
+        <span class="count">2 commands</span>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>명령어</th><th>설명</th></tr></thead>
+          <tbody><tr class="command-row" data-search="/칭호 내가 가지고 있는 칭호를 장착/착용해제/제거합니다">
+            <td><code>/칭호</code></td>
+            <td>내가 가지고 있는 칭호를 장착/착용해제/제거합니다</td>
+        </tr><tr class="command-row" data-search="/칭호목록 (플레이어) 플레이어의 칭호 목록 gui를 엽니다">
+            <td><code>/칭호목록 (플레이어)</code><span class="badge">관리자</span></td>
+            <td>플레이어의 칭호 목록 GUI를 엽니다</td>
+        </tr></tbody>
+        </table>
+      </div>
+    </section>
+    <section class="command-section" data-category="경제 명령어">
+      <div class="section-head">
+        <div>
+          <span class="section-number">07</span>
+          <h2>경제</h2>
+        </div>
+        <span class="count">7 commands</span>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>명령어</th><th>설명</th></tr></thead>
+          <tbody><tr class="command-row" data-search="/돈 소지금 및 보유 캐시를 확인합니다">
+            <td><code>/돈</code></td>
+            <td>소지금 및 보유 캐시를 확인합니다</td>
+        </tr><tr class="command-row" data-search="/송금 (플레이어) (금액) 플레이어에게 (금액)만큼의 돈을 송금합니다">
+            <td><code>/송금 (플레이어) (금액)</code></td>
+            <td>플레이어에게 (금액)만큼의 돈을 송금합니다</td>
+        </tr><tr class="command-row" data-search="/수표 (금액) (금액)을 종이수표로 뽑아냅니다">
+            <td><code>/수표 (금액)</code></td>
+            <td>(금액)을 종이수표로 뽑아냅니다</td>
+        </tr><tr class="command-row" data-search="/돈설정 (플레이어) (추가/제거/설정/초기화) (금액) 플레이어의 돈을 설정합니다">
+            <td><code>/돈설정 (플레이어) (추가/제거/설정/초기화) (금액)</code><span class="badge">관리자</span></td>
+            <td>플레이어의 돈을 설정합니다</td>
+        </tr><tr class="command-row" data-search="/수표지급 (플레이어) (금액) 플레이어에게 수표를 지급합니다">
+            <td><code>/수표지급 (플레이어) (금액)</code><span class="badge">관리자</span></td>
+            <td>플레이어에게 수표를 지급합니다</td>
+        </tr><tr class="command-row" data-search="/계좌정지 플레이어의 송금 및 수표발급을 금지시킵니다">
+            <td><code>/계좌정지</code><span class="badge">관리자</span></td>
+            <td>플레이어의 송금 및 수표발급을 금지시킵니다</td>
+        </tr><tr class="command-row" data-search="/계좌개방 계좌정지를 해제합니다">
+            <td><code>/계좌개방</code><span class="badge">관리자</span></td>
+            <td>계좌정지를 해제합니다</td>
+        </tr></tbody>
+        </table>
+      </div>
+    </section>
+    <section class="command-section" data-category="상점 명령어">
+      <div class="section-head">
+        <div>
+          <span class="section-number">08</span>
+          <h2>상점</h2>
+        </div>
+        <span class="count">5 commands</span>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>명령어</th><th>설명</th></tr></thead>
+          <tbody><tr class="command-row" data-search="/상점 상점 메뉴를 얍니다">
+            <td><code>/상점</code></td>
+            <td>상점 메뉴를 얍니다</td>
+        </tr><tr class="command-row" data-search="/판매 (갯수) 손에 든 아이템을 (갯수) 만큼 판매합니다">
+            <td><code>/판매 (갯수)</code></td>
+            <td>손에 든 아이템을 (갯수) 만큼 판매합니다</td>
+        </tr><tr class="command-row" data-search="/전체판매 인벤토리에 있는 손에든 아이템을 전부 판매합니다">
+            <td><code>/전체판매</code></td>
+            <td>인벤토리에 있는 손에든 아이템을 전부 판매합니다</td>
+        </tr><tr class="command-row" data-search="/상점등록 (상점이름) 상점을 등록합니다">
+            <td><code>/상점등록 (상점이름)</code><span class="badge">관리자</span></td>
+            <td>상점을 등록합니다</td>
+        </tr><tr class="command-row" data-search="/상점설정 (상점이름) 상점에서 판매할 물품/판매가격/구매가격/한정수량 등을 설정합니다">
+            <td><code>/상점설정 (상점이름)</code><span class="badge">관리자</span></td>
+            <td>상점에서 판매할 물품/판매가격/구매가격/한정수량 등을 설정합니다</td>
+        </tr></tbody>
+        </table>
+      </div>
+    </section>
+    <section class="command-section" data-category="메뉴 명령어">
+      <div class="section-head">
+        <div>
+          <span class="section-number">09</span>
+          <h2>메뉴</h2>
+        </div>
+        <span class="count">2 commands</span>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>명령어</th><th>설명</th></tr></thead>
+          <tbody><tr class="command-row" data-search="/메뉴 편의성을 위한 메뉴 gui를 엽니다 (shift + f)">
+            <td><code>/메뉴</code></td>
+            <td>편의성을 위한 메뉴 GUI를 엽니다 (SHIFT + F)</td>
+        </tr><tr class="command-row" data-search="/관리자메뉴 관리자를 위한 특수 메뉴를 엽니다 (관리자일 경우 shift + q)">
+            <td><code>/관리자메뉴</code><span class="badge">관리자</span></td>
+            <td>관리자를 위한 특수 메뉴를 엽니다 (관리자일 경우 SHIFT + Q)</td>
+        </tr></tbody>
+        </table>
+      </div>
+    </section>
+    <section class="command-section" data-category="보상 명령어">
+      <div class="section-head">
+        <div>
+          <span class="section-number">10</span>
+          <h2>보상</h2>
+        </div>
+        <span class="count">5 commands</span>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>명령어</th><th>설명</th></tr></thead>
+          <tbody><tr class="command-row" data-search="/추천 추천 링크를 보냅니다, 보상으로 보물상자 추천 열쇠를 획득합니다">
+            <td><code>/추천</code></td>
+            <td>추천 링크를 보냅니다, 보상으로 보물상자 추천 열쇠를 획득합니다</td>
+        </tr><tr class="command-row" data-search="/플타보상 플레이타임 별 보상 메뉴 gui를 열어 보상을 얻습니다">
+            <td><code>/플타보상</code></td>
+            <td>플레이타임 별 보상 메뉴 GUI를 열어 보상을 얻습니다</td>
+        </tr><tr class="command-row" data-search="/던전보상 던전을 깰 때마다 보상을 얻을 수 있는 메뉴 gui 를 엽니다">
+            <td><code>/던전보상</code></td>
+            <td>던전을 깰 때마다 보상을 얻을 수 있는 메뉴 GUI 를 엽니다</td>
+        </tr><tr class="command-row" data-search="/출석보상 하루마다 접속시 보상을 얻는 메뉴 gui를 엽니다">
+            <td><code>/출석보상</code></td>
+            <td>하루마다 접속시 보상을 얻는 메뉴 GUI를 엽니다</td>
+        </tr><tr class="command-row" data-search="/보상쿨초 (플레이어) (추천/플타/던전/출석) 보상을 다시 받을 수 있게합니다">
+            <td><code>/보상쿨초 (플레이어) (추천/플타/던전/출석)</code><span class="badge">관리자</span></td>
+            <td>보상을 다시 받을 수 있게합니다</td>
+        </tr></tbody>
+        </table>
+      </div>
+    </section>
+    <section class="command-section" data-category="기타 명령어">
+      <div class="section-head">
+        <div>
+          <span class="section-number">11</span>
+          <h2>기타</h2>
+        </div>
+        <span class="count">13 commands</span>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>명령어</th><th>설명</th></tr></thead>
+          <tbody><tr class="command-row" data-search="/우편함 보상을 받을 수 있는 우편함을 엽니다">
+            <td><code>/우편함</code></td>
+            <td>보상을 받을 수 있는 우편함을 엽니다</td>
+        </tr><tr class="command-row" data-search="/로비 로비로 이동합니다">
+            <td><code>/로비</code></td>
+            <td>로비로 이동합니다</td>
+        </tr><tr class="command-row" data-search="/야생 야생으로 이동합니다">
+            <td><code>/야생</code></td>
+            <td>야생으로 이동합니다</td>
+        </tr><tr class="command-row" data-search="/자원 자원월드로 이동합니다">
+            <td><code>/자원</code></td>
+            <td>자원월드로 이동합니다</td>
+        </tr><tr class="command-row" data-search="/놀이터 놀이터 월드로 이동합니다">
+            <td><code>/놀이터</code></td>
+            <td>놀이터 월드로 이동합니다</td>
+        </tr><tr class="command-row" data-search="/디스코드 디스코드 링크를 채팅에 올립니다">
+            <td><code>/디스코드</code></td>
+            <td>디스코드 링크를 채팅에 올립니다</td>
+        </tr><tr class="command-row" data-search="/서버위키 서버 위키 링크를 채팅에 올립니다">
+            <td><code>/서버위키</code></td>
+            <td>서버 위키 링크를 채팅에 올립니다</td>
+        </tr><tr class="command-row" data-search="/양조장 양조 gui를 엽니다">
+            <td><code>/양조장</code></td>
+            <td>양조 GUI를 엽니다</td>
+        </tr><tr class="command-row" data-search="/도감 도감 gui를 엽니다">
+            <td><code>/도감</code></td>
+            <td>도감 GUI를 엽니다</td>
+        </tr><tr class="command-row" data-search="/랜덤텔포 (야생,자원에서만) 무작위 위치로 텔레포트 합니다">
+            <td><code>/랜덤텔포</code></td>
+            <td>(야생,자원에서만) 무작위 위치로 텔레포트 합니다</td>
+        </tr><tr class="command-row" data-search="/스폰위치설정 (로비/놀이터/아레나/카지노) 스폰되는 위치를 설정합니다">
+            <td><code>/스폰위치설정 (로비/놀이터/아레나/카지노)</code><span class="badge">관리자</span></td>
+            <td>스폰되는 위치를 설정합니다</td>
+        </tr><tr class="command-row" data-search="/fly 날기 상태를 on/off 합니다">
+            <td><code>/fly</code><span class="badge">관리자</span></td>
+            <td>날기 상태를 on/off 합니다</td>
+        </tr><tr class="command-row" data-search="/vanish 모습을 감춥니다">
+            <td><code>/vanish</code><span class="badge">관리자</span></td>
+            <td>모습을 감춥니다</td>
+        </tr></tbody>
+        </table>
+      </div>
+    </section>
+    <section class="command-section" data-category="집 시스템">
+      <div class="section-head">
+        <div>
+          <span class="section-number">12</span>
+          <h2>집 시스템</h2>
+        </div>
+        <span class="count">6 commands</span>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>명령어</th><th>설명</th></tr></thead>
+          <tbody><tr class="command-row" data-search="/home (1~5) 1~5번까지 지정된 홈 위치로 이동합니다">
+            <td><code>/home (1~5)</code></td>
+            <td>1~5번까지 지정된 홈 위치로 이동합니다</td>
+        </tr><tr class="command-row" data-search="/sethome (1~5) 1~5번 홈을 현재위치로 지정합니다">
+            <td><code>/sethome (1~5)</code></td>
+            <td>1~5번 홈을 현재위치로 지정합니다</td>
+        </tr><tr class="command-row" data-search="/delhome (1~5) 지정된 1~5번 홈을 삭제합니다">
+            <td><code>/delhome (1~5)</code></td>
+            <td>지정된 1~5번 홈을 삭제합니다</td>
+        </tr><tr class="command-row" data-search="/asethome (플레이어) (1~5) 플레이어의 집을 강제로 설정합니다">
+            <td><code>/asethome (플레이어) (1~5)</code><span class="badge">관리자</span></td>
+            <td>플레이어의 집을 강제로 설정합니다</td>
+        </tr><tr class="command-row" data-search="/adelhome (플레이어) (1~5) 플레이어의 집을 강제로 제거합니다">
+            <td><code>/adelhome (플레이어) (1~5)</code><span class="badge">관리자</span></td>
+            <td>플레이어의 집을 강제로 제거합니다</td>
+        </tr><tr class="command-row" data-search="/ahome (플레이어) (1~5) 플레이어의 집으로 이동합니다">
+            <td><code>/ahome (플레이어) (1~5)</code><span class="badge">관리자</span></td>
+            <td>플레이어의 집으로 이동합니다</td>
+        </tr></tbody>
+        </table>
+      </div>
+    </section>
+    <section class="command-section" data-category="보관함 시스템">
+      <div class="section-head">
+        <div>
+          <span class="section-number">13</span>
+          <h2>보관함 시스템</h2>
+        </div>
+        <span class="count">2 commands</span>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>명령어</th><th>설명</th></tr></thead>
+          <tbody><tr class="command-row" data-search="/보관함 보관함 메뉴 gui를 엽니다">
+            <td><code>/보관함</code></td>
+            <td>보관함 메뉴 GUI를 엽니다</td>
+        </tr><tr class="command-row" data-search="/보관함열기 (플레이어) 플레이어의 보관함을 엽니다">
+            <td><code>/보관함열기 (플레이어)</code><span class="badge">관리자</span></td>
+            <td>플레이어의 보관함을 엽니다</td>
+        </tr></tbody>
+        </table>
+      </div>
+    </section>
+    <section class="command-section" data-category="직업 시스템">
+      <div class="section-head">
+        <div>
+          <span class="section-number">14</span>
+          <h2>직업 시스템</h2>
+        </div>
+        <span class="count">4 commands</span>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>명령어</th><th>설명</th></tr></thead>
+          <tbody><tr class="command-row" data-search="/전직 (직업) (직업)으로 직업을 선택합니다">
+            <td><code>/전직 (직업)</code></td>
+            <td>(직업)으로 직업을 선택합니다</td>
+        </tr><tr class="command-row" data-search="/내직업 내가 가진 직업에 대한 자세한 정보를 확인합니다">
+            <td><code>/내직업</code></td>
+            <td>내가 가진 직업에 대한 자세한 정보를 확인합니다</td>
+        </tr><tr class="command-row" data-search="/강제전직 (플레이어) (직업) 플레이어를 직업으로 강제 전직시킵니다">
+            <td><code>/강제전직 (플레이어) (직업)</code><span class="badge">관리자</span></td>
+            <td>플레이어를 직업으로 강제 전직시킵니다</td>
+        </tr><tr class="command-row" data-search="/직업초기화 (플레이어) (직업) 플레이어의 직업 능력치/상태 등을 초기화합니다">
+            <td><code>/직업초기화 (플레이어) (직업)</code><span class="badge">관리자</span></td>
+            <td>플레이어의 직업 능력치/상태 등을 초기화합니다</td>
+        </tr></tbody>
+        </table>
+      </div>
+    </section>
+    <section class="command-section" data-category="퀘스트 시스템">
+      <div class="section-head">
+        <div>
+          <span class="section-number">15</span>
+          <h2>퀘스트 시스템</h2>
+        </div>
+        <span class="count">2 commands</span>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>명령어</th><th>설명</th></tr></thead>
+          <tbody><tr class="command-row" data-search="/퀘스트 퀘스트 메인 gui를 엽니다">
+            <td><code>/퀘스트</code></td>
+            <td>퀘스트 메인 GUI를 엽니다</td>
+        </tr><tr class="command-row" data-search="/퀘스트쿨초 (플레이어) (일일/주간/특별) 퀘스트 쿨타임을 초기화합니다">
+            <td><code>/퀘스트쿨초 (플레이어) (일일/주간/특별)</code><span class="badge">관리자</span></td>
+            <td>퀘스트 쿨타임을 초기화합니다</td>
+        </tr></tbody>
+        </table>
+      </div>
+    </section>
+    <section class="command-section" data-category="도전과제">
+      <div class="section-head">
+        <div>
+          <span class="section-number">16</span>
+          <h2>도전과제</h2>
+        </div>
+        <span class="count">2 commands</span>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>명령어</th><th>설명</th></tr></thead>
+          <tbody><tr class="command-row" data-search="/업적 업적 gui를 엽니다">
+            <td><code>/업적</code></td>
+            <td>업적 GUI를 엽니다</td>
+        </tr><tr class="command-row" data-search="/업적초기화 (플레이어) (업적명) 업적을 초기화합니다 (업적명 비울시 전체 초기화)">
+            <td><code>/업적초기화 (플레이어) (업적명)</code><span class="badge">관리자</span></td>
+            <td>업적을 초기화합니다 (업적명 비울시 전체 초기화)</td>
+        </tr></tbody>
+        </table>
+      </div>
+    </section>
+    <section class="command-section" data-category="미니게임 시스템">
+      <div class="section-head">
+        <div>
+          <span class="section-number">17</span>
+          <h2>미니게임 시스템</h2>
+        </div>
+        <span class="count">3 commands</span>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>명령어</th><th>설명</th></tr></thead>
+          <tbody><tr class="command-row" data-search="/필드보스 보스잡기 레이드를 참여합니다">
+            <td><code>/필드보스</code></td>
+            <td>보스잡기 레이드를 참여합니다</td>
+        </tr><tr class="command-row" data-search="/컨퀘스트 마을 혹은 파티 간 점령전에 참여합니다">
+            <td><code>/컨퀘스트</code></td>
+            <td>마을 혹은 파티 간 점령전에 참여합니다</td>
+        </tr><tr class="command-row" data-search="/필드보스설정 (보스명) 보스명 에 대한 보스 능력치를 설정하는 gui를 띄웁니다">
+            <td><code>/필드보스설정 (보스명)</code><span class="badge">관리자</span></td>
+            <td>보스명 에 대한 보스 능력치를 설정하는 GUI를 띄웁니다</td>
+        </tr></tbody>
+        </table>
+      </div>
+    </section>
+    <section class="command-section" data-category="뉴비지원 시스템">
+      <div class="section-head">
+        <div>
+          <span class="section-number">18</span>
+          <h2>뉴비지원 시스템</h2>
+        </div>
+        <span class="count">5 commands</span>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>명령어</th><th>설명</th></tr></thead>
+          <tbody><tr class="command-row" data-search="/뉴하 명령어 사용시 제일 빨리 입력한 사람과 뉴하 대상에게 추천 열쇠를 지급합니다">
+            <td><code>/뉴하</code></td>
+            <td>명령어 사용시 제일 빨리 입력한 사람과 뉴하 대상에게 추천 열쇠를 지급합니다</td>
+        </tr><tr class="command-row" data-search="/기본템 야생에 필요한 기본템을 지원합니다">
+            <td><code>/기본템</code></td>
+            <td>야생에 필요한 기본템을 지원합니다</td>
+        </tr><tr class="command-row" data-search="/길라잡이 1~50 단계의 기초 플레이 가이드를 엽니다">
+            <td><code>/길라잡이</code></td>
+            <td>1~50 단계의 기초 플레이 가이드를 엽니다</td>
+        </tr><tr class="command-row" data-search="/기본템쿨초 (플레이어) 기본템을 다시 받습니다">
+            <td><code>/기본템쿨초 (플레이어)</code><span class="badge">관리자</span></td>
+            <td>기본템을 다시 받습니다</td>
+        </tr><tr class="command-row" data-search="/길라잡이초기화 (플레이어) (1~50) 각 단계의 보상을 재지급 할 수 있도록 초기화합니다">
+            <td><code>/길라잡이초기화 (플레이어) (1~50)</code><span class="badge">관리자</span></td>
+            <td>각 단계의 보상을 재지급 할 수 있도록 초기화합니다</td>
+        </tr></tbody>
+        </table>
+      </div>
+    </section>
+    <section class="command-section" data-category="보안 시스템">
+      <div class="section-head">
+        <div>
+          <span class="section-number">19</span>
+          <h2>보안 시스템</h2>
+        </div>
+        <span class="count">8 commands</span>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>명령어</th><th>설명</th></tr></thead>
+          <tbody><tr class="command-row" data-search="/지역보호 (* 금 삽으로 좌/우클릭  지정 후 명령어 이용) ">
+            <td><code>/지역보호 (* 금 삽으로 좌/우클릭  지정 후 명령어 이용)</code></td>
+            <td></td>
+        </tr><tr class="command-row" data-search="/지역보호 생성 지역보호를 생성합니다">
+            <td><code>/지역보호 생성</code></td>
+            <td>지역보호를 생성합니다</td>
+        </tr><tr class="command-row" data-search="/지역보호 제거 지역보호를 제거합니다">
+            <td><code>/지역보호 제거</code></td>
+            <td>지역보호를 제거합니다</td>
+        </tr><tr class="command-row" data-search="/지역보호 정보 지역보호의 정보 및 기타 지역보호 목록을 표시합니다">
+            <td><code>/지역보호 정보</code></td>
+            <td>지역보호의 정보 및 기타 지역보호 목록을 표시합니다</td>
+        </tr><tr class="command-row" data-search="/잠금 입력후 우클릭시 상자,화로,마법부여대,모루 등에 잠금을 설정합니다">
+            <td><code>/잠금</code></td>
+            <td>입력후 우클릭시 상자,화로,마법부여대,모루 등에 잠금을 설정합니다</td>
+        </tr><tr class="command-row" data-search="/잠금해제 입력후 우클릭시 잠금을 해제합니다">
+            <td><code>/잠금해제</code></td>
+            <td>입력후 우클릭시 잠금을 해제합니다</td>
+        </tr><tr class="command-row" data-search="/지역보호 해체 지역보호를 강제로 해체시킵니다">
+            <td><code>/지역보호 해체</code><span class="badge">관리자</span></td>
+            <td>지역보호를 강제로 해체시킵니다</td>
+        </tr><tr class="command-row" data-search="/지역보호 소유권이전 (플레이어) 지역보호의 소유권을 이전 시킵니다">
+            <td><code>/지역보호 소유권이전 (플레이어)</code><span class="badge">관리자</span></td>
+            <td>지역보호의 소유권을 이전 시킵니다</td>
+        </tr></tbody>
+        </table>
+      </div>
+    </section>
+  </div>
+  <div id="empty" class="empty">검색 결과가 없습니다.</div>
+</main>
+<footer>2026 Roen. <strong>All rights reserved.</strong></footer>
+<script>
+const search=document.getElementById("search");
+const filter=document.getElementById("filter");
+const sections=[...document.querySelectorAll(".command-section")];
+const empty=document.getElementById("empty");
+
+function update(){
+ const q=search.value.trim().toLowerCase();
+ const f=filter.value;
+ let visible=0;
+ sections.forEach(section=>{
+   const category=section.dataset.category;
+   const categoryOk=f==="all"||category===f;
+   let rows=section.querySelectorAll(".command-row");
+   let rowVisible=0;
+   rows.forEach(row=>{
+      const ok=!q||row.dataset.search.includes(q);
+      row.classList.toggle("hidden",!ok);
+      if(ok) rowVisible++;
+   });
+   const show=categoryOk && (!q || rowVisible>0);
+   section.classList.toggle("hidden",!show);
+   if(show) visible++;
+ });
+ empty.style.display=visible?"none":"block";
+}
+search.addEventListener("input",update);
+filter.addEventListener("change",update);
+</script>
+</body>
+</html>
